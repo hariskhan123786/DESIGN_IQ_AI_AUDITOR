@@ -3531,8 +3531,14 @@
     // ANALYSIS SIMULATOR PIPELINE
     // ----------------------------------------------------
     function demoAudit() {
-      document.getElementById('input-url').value = "https://tesla.com";
-      document.getElementById('audit-form').dispatchEvent(new Event('submit'));
+      const input = document.getElementById('input-url');
+      if (input) input.value = "https://tesla.com";
+      const form = document.getElementById('audit-form');
+      if (form && typeof form.onsubmit === 'function') {
+        form.onsubmit(new Event('submit'));
+      } else {
+        startAnalysis(new Event('submit'));
+      }
     }
 
     function startAnalysis(e) {
