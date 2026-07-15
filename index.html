@@ -484,6 +484,165 @@
       -webkit-backdrop-filter: blur(24px);
       border: 1px solid rgba(255, 255, 255, 0.08);
     }
+
+    /* PREMIUM SAAS DESIGN SYSTEM EXTENSIONS */
+    
+    /* Background Elements */
+    .bg-grid-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+      background-size: 50px 50px;
+      pointer-events: none;
+    }
+    .light .bg-grid-overlay {
+      background-image: 
+        linear-gradient(rgba(15, 23, 42, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(15, 23, 42, 0.02) 1px, transparent 1px);
+    }
+    .aurora-container {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      overflow: hidden;
+      pointer-events: none;
+      filter: blur(130px);
+      opacity: 0.35;
+      transition: opacity 0.5s ease;
+    }
+    .light .aurora-container {
+      opacity: 0.15;
+      filter: blur(150px);
+    }
+    .aurora-blob {
+      position: absolute;
+      border-radius: 50%;
+      mix-blend-mode: screen;
+      animation: aurora-float 25s infinite alternate ease-in-out;
+      will-change: transform;
+    }
+    .aurora-blob-1 {
+      top: -15%;
+      left: -10%;
+      width: 55vw;
+      height: 55vw;
+      background: radial-gradient(circle, rgba(139, 92, 246, 0.35) 0%, transparent 70%);
+      animation-duration: 28s;
+    }
+    .aurora-blob-2 {
+      bottom: -15%;
+      right: -10%;
+      width: 55vw;
+      height: 55vw;
+      background: radial-gradient(circle, rgba(14, 165, 233, 0.35) 0%, transparent 70%);
+      animation-duration: 32s;
+    }
+    .aurora-blob-3 {
+      top: 35%;
+      left: 45%;
+      width: 45vw;
+      height: 45vw;
+      background: radial-gradient(circle, rgba(217, 70, 239, 0.25) 0%, transparent 70%);
+      animation-duration: 24s;
+    }
+    @keyframes aurora-float {
+      0% { transform: translate(0, 0) scale(1) rotate(0deg); }
+      50% { transform: translate(8%, -8%) scale(1.08) rotate(180deg); }
+      100% { transform: translate(-4%, 4%) scale(0.96) rotate(360deg); }
+    }
+    .noise-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      opacity: 0.02;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 250 250' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    }
+    .spotlight-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      background: radial-gradient(circle 350px at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(139, 92, 246, 0.08), transparent 80%);
+      transition: opacity 0.3s ease;
+    }
+    .light .spotlight-overlay {
+      background: radial-gradient(circle 350px at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(139, 92, 246, 0.04), transparent 80%);
+    }
+    
+    /* Premium Shadows & Borders */
+    .premium-border {
+      position: relative;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .premium-border::before {
+      content: "";
+      position: absolute;
+      inset: -1px;
+      border-radius: inherit;
+      padding: 1px;
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.12), transparent, rgba(255, 255, 255, 0.04));
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+    .light .premium-border::before {
+      background: linear-gradient(135deg, rgba(0, 0, 0, 0.08), transparent, rgba(0, 0, 0, 0.03));
+    }
+    
+    /* Interactive Cards */
+    .glass-card {
+      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.3);
+      border-radius: 24px;
+    }
+    .light .glass-card {
+      box-shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.05);
+    }
+    .glass-card:hover {
+      box-shadow: 0 30px 60px -20px rgba(139, 92, 246, 0.2);
+      border-color: rgba(139, 92, 246, 0.3);
+      transform: translateY(-4px);
+    }
+    .light .glass-card:hover {
+      box-shadow: 0 30px 60px -20px rgba(139, 92, 246, 0.1);
+      border-color: rgba(139, 92, 246, 0.2);
+    }
+    
+    /* Loading Skeleton */
+    .skeleton {
+      background: linear-gradient(90deg, rgba(255, 255, 255, 0.04) 25%, rgba(255, 255, 255, 0.08) 37%, rgba(255, 255, 255, 0.04) 63%);
+      background-size: 400% 100%;
+      animation: skeleton-loading 1.4s ease infinite;
+      border-radius: 8px;
+    }
+    .light .skeleton {
+      background: linear-gradient(90deg, rgba(0, 0, 0, 0.03) 25%, rgba(0, 0, 0, 0.06) 37%, rgba(0, 0, 0, 0.03) 63%);
+      background-size: 400% 100%;
+    }
+    @keyframes skeleton-loading {
+      0% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    
+    /* Device resizer animations */
+    .viewport-transition {
+      transition: max-width 0.45s cubic-bezier(0.34, 1.56, 0.64, 1), height 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    
+    /* Section transitions */
+    .scroll-reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .scroll-reveal.revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
   </style>
 </head>
 <body class="font-sans transition-colors duration-300 overflow-x-hidden selection:bg-brand-500 selection:text-white">
@@ -491,10 +650,14 @@
   <!-- Interactive canvas particles in background -->
   <canvas id="bg-particles" class="fixed inset-0 pointer-events-none z-0 opacity-40"></canvas>
 
-  <!-- Glowing background blobs matching theme style -->
-  <div class="fixed top-0 left-0 w-full h-full pointer-events-none overflow-hidden z-0 opacity-20">
-    <div class="absolute top-[-100px] left-[-100px] w-96 h-96 theme-blob-1 rounded-full blur-[120px] animate-blob parallax-scroll-down" data-scroll-rate="0.18"></div>
-    <div class="absolute bottom-[-100px] right-[-100px] w-96 h-96 theme-blob-2 rounded-full blur-[120px] animate-blob parallax-scroll-down" data-scroll-rate="0.25" style="animation-delay: 2s"></div>
+  <!-- Premium SaaS Background Elements -->
+  <div class="bg-grid-overlay"></div>
+  <div class="noise-overlay"></div>
+  <div class="spotlight-overlay"></div>
+  <div class="aurora-container">
+    <div class="aurora-blob aurora-blob-1"></div>
+    <div class="aurora-blob aurora-blob-2"></div>
+    <div class="aurora-blob aurora-blob-3"></div>
   </div>
 
   <!-- Header / Navigation -->
@@ -606,27 +769,27 @@
   <main class="relative z-10 pt-28" id="landing-page">
     
     <!-- Hero Section -->
-    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-24 text-center">
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-24 text-center scroll-reveal">
       <div class="relative z-10 max-w-4xl mx-auto space-y-8 animate-fade-in-up">
-        <div class="inline-flex items-center space-x-2 px-3 py-1.5 rounded-full glass text-xs font-semibold text-brand-400 tracking-wide mb-4">
+        <div class="inline-flex items-center space-x-2 px-3 py-1.5 rounded-full bg-brand-500/10 border border-brand-500/20 text-xs font-semibold text-brand-300 tracking-wide mb-4 shadow-lg shadow-brand-500/5">
           <span class="w-2 h-2 rounded-full bg-brand-500 animate-pulse"></span>
           <span>Next-Generation Gaze & UX Modeling Engine</span>
         </div>
         
-        <h1 class="font-display font-bold text-4xl sm:text-6xl md:text-7xl tracking-tight leading-tight">
+        <h1 class="font-display font-extrabold text-4xl sm:text-6xl md:text-7xl tracking-tight leading-tight text-white">
           Design Intelligence,<br>
-          <span class="bg-gradient-to-r from-brand-400 via-fuchsia-400 to-blue-400 bg-clip-text text-transparent">Quantified.</span>
+          <span class="bg-gradient-to-r from-brand-400 via-fuchsia-400 to-blue-400 bg-clip-text text-transparent drop-shadow-[0_0_30px_rgba(139,92,246,0.3)]">Fully Quantified.</span>
         </h1>
         
         <p class="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed dark:text-gray-400 light:text-gray-600">
-          Leverage deep-learning analysis to audit UX friction, brand consistency, and conversion potential in seconds. Design smarter with data.
+          Leverage deep-learning layout models to audit visual hierarchy, page speed metrics, brand consistency, and user readability in seconds. One-click deploy visual repairs.
         </p>
         
         <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
-          <a href="#analyzer-input-box" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-brand-600 to-blue-600 hover:from-brand-500 hover:to-blue-500 text-white font-semibold shadow-xl shadow-brand-500/20 hover:scale-[1.02] transition-all duration-300">
-            Analyze Your Site
+          <a href="#analyzer-input-box" class="w-full sm:w-auto px-8 py-4 rounded-2xl bg-gradient-to-r from-brand-600 to-blue-600 hover:from-brand-500 hover:to-blue-500 text-white font-semibold shadow-xl shadow-brand-500/30 hover:scale-[1.03] active:scale-95 transition-all duration-300">
+            Analyze Your Site Now
           </a>
-          <button onclick="demoAudit()" class="w-full sm:w-auto px-8 py-4 rounded-xl glass hover:bg-white/10 text-white font-semibold transition-all duration-300">
+          <button onclick="demoAudit()" class="w-full sm:w-auto px-8 py-4 rounded-2xl glass hover:bg-white/10 text-white font-semibold transition-all duration-300 border border-white/10 hover:border-white/20">
             View Sample Report
           </button>
         </div>
@@ -634,126 +797,186 @@
 
       <!-- 3D Geodesic Sphere Visual Asset -->
       <div class="relative w-full max-w-4xl mx-auto aspect-square flex items-center justify-center select-none pointer-events-auto overflow-hidden mt-8 max-h-[500px] mb-12">
-        <!-- Glowing aura behind the sphere -->
         <div class="absolute w-[350px] h-[350px] bg-purple-600/15 rounded-full blur-[100px] pointer-events-none"></div>
-        <!-- Geodesic Sphere Canvas with parallax scroll effect -->
         <canvas id="geodesic-sphere" class="w-full h-full max-w-[450px] max-h-[450px] z-10 parallax-scroll-down" data-scroll-rate="0.22" style="will-change: transform;"></canvas>
       </div>
 
       <!-- Trusted By Brand Marquee Row -->
-      <div class="relative z-10 w-full py-6 overflow-hidden select-none mb-16 opacity-40 border-t border-b border-slate-900/40 bg-slate-950/5">
+      <div class="relative z-10 w-full py-8 overflow-hidden select-none mb-16 border-t border-b border-white/5 bg-slate-950/20 backdrop-blur-md">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="flex flex-wrap items-center justify-center gap-x-12 gap-y-4 text-xs font-mono tracking-[0.25em] text-slate-400 uppercase font-semibold">
-            <span class="hover:text-slate-200 transition-colors duration-200">MICROSOFT</span>
-            <span class="hover:text-slate-200 transition-colors duration-200">AIRBNB</span>
-            <span class="hover:text-slate-200 transition-colors duration-200">STRIPE</span>
-            <span class="hover:text-slate-200 transition-colors duration-200">NOTION</span>
-            <span class="hover:text-slate-200 transition-colors duration-200">DUOLINGO</span>
-            <span class="hover:text-slate-200 transition-colors duration-200">LINEAR</span>
-            <span class="hover:text-slate-200 transition-colors duration-200">MICROSOFT</span>
+          <div class="flex flex-wrap items-center justify-center gap-x-16 gap-y-6 text-xs font-mono tracking-[0.25em] text-slate-500 uppercase font-semibold">
+            <span class="hover:text-slate-350 transition-colors duration-200 cursor-default">MICROSOFT</span>
+            <span class="hover:text-slate-350 transition-colors duration-200 cursor-default">AIRBNB</span>
+            <span class="hover:text-slate-350 transition-colors duration-200 cursor-default">STRIPE</span>
+            <span class="hover:text-slate-350 transition-colors duration-200 cursor-default">NOTION</span>
+            <span class="hover:text-slate-350 transition-colors duration-200 cursor-default">DUOLINGO</span>
+            <span class="hover:text-slate-350 transition-colors duration-200 cursor-default">LINEAR</span>
           </div>
         </div>
       </div>
     </section>
 
     <!-- Features Section -->
-    <section id="features" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+    <section id="features" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 scroll-reveal">
       <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+        <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-brand-500/10 border border-brand-500/20 text-[10px] font-bold text-brand-300 uppercase tracking-widest">Capabilities</div>
         <h2 class="font-display font-bold text-3xl md:text-5xl text-white">The Future of Design Quality</h2>
-        <p class="text-gray-400 dark:text-gray-400 light:text-gray-600">Our proprietary DesignIQ Engine scans 500+ visual parameters to provide instant, actionable insights.</p>
+        <p class="text-gray-400 dark:text-gray-400 light:text-gray-600">Our design auditing core scans 500+ layout variables to provide instant, pixel-perfect improvements.</p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
         <!-- Feature 1 -->
-        <div class="glass-card p-8 rounded-3xl flex flex-col justify-between group">
+        <div class="glass-card p-8 rounded-3xl flex flex-col justify-between group border border-white/5 premium-border">
           <div class="space-y-4">
-            <div class="w-12 h-12 rounded-2xl bg-brand-500/10 flex items-center justify-center text-brand-400 group-hover:bg-brand-500/20 transition-all duration-300">
+            <div class="w-12 h-12 rounded-2xl bg-brand-500/10 flex items-center justify-center text-brand-400 group-hover:bg-brand-500/20 group-hover:scale-110 transition-all duration-300">
               <i class="fa-solid fa-chart-line text-xl"></i>
             </div>
             <h3 class="font-display font-bold text-xl text-white">UX Friction Audit</h3>
-            <p class="text-gray-400 dark:text-gray-400 light:text-gray-600">Identify cognitive load issues and navigation bottlenecks using our predictive gaze modeling. Optimized for e-commerce and SaaS platforms.</p>
+            <p class="text-gray-400 dark:text-gray-400 light:text-gray-600">Identify visual clutter and conversion bottlenecks using our predictive gaze modeling. Anchors eye paths based on scientific user models.</p>
           </div>
         </div>
         <!-- Feature 2 -->
-        <div class="glass-card p-8 rounded-3xl flex flex-col justify-between group">
+        <div class="glass-card p-8 rounded-3xl flex flex-col justify-between group border border-white/5 premium-border">
           <div class="space-y-4">
-            <div class="w-12 h-12 rounded-2xl bg-blue-500/10 flex items-center justify-center text-blue-400 group-hover:bg-blue-500/20 transition-all duration-300">
+            <div class="w-12 h-12 rounded-2xl bg-blue-500/10 flex items-center justify-center text-blue-400 group-hover:bg-blue-500/20 group-hover:scale-110 transition-all duration-300">
               <i class="fa-solid fa-palette text-xl"></i>
             </div>
             <h3 class="font-display font-bold text-xl text-white">Brand Guard</h3>
-            <p class="text-gray-400 dark:text-gray-400 light:text-gray-600">Ensure strict adherence to your design system and color accessibility standards across all components.</p>
+            <p class="text-gray-400 dark:text-gray-400 light:text-gray-600">Check border radius, typography weight scales, forms, and contrast ratios automatically against WCAG 2.1 AA/AAA compliance.</p>
           </div>
         </div>
         <!-- Feature 3 -->
-        <div class="glass-card p-8 rounded-3xl flex flex-col justify-between group">
+        <div class="glass-card p-8 rounded-3xl flex flex-col justify-between group border border-white/5 premium-border">
           <div class="space-y-4">
-            <div class="w-12 h-12 rounded-2xl bg-fuchsia-500/10 flex items-center justify-center text-fuchsia-400 group-hover:bg-fuchsia-500/20 transition-all duration-300">
+            <div class="w-12 h-12 rounded-2xl bg-fuchsia-500/10 flex items-center justify-center text-fuchsia-400 group-hover:bg-fuchsia-500/20 group-hover:scale-110 transition-all duration-300">
               <i class="fa-solid fa-bolt text-xl"></i>
             </div>
             <h3 class="font-display font-bold text-xl text-white">Core Web Vitals</h3>
-            <p class="text-gray-400 dark:text-gray-400 light:text-gray-600">Analysis of CLS, LCP, and FID from a design perspective, highlighting layout shifts that hurt SEO.</p>
+            <p class="text-gray-400 dark:text-gray-400 light:text-gray-600">Audit CLS, LCP, INP, FCP, TTFB, and Speed Index from a design layout perspective, highlighting shifting elements.</p>
           </div>
         </div>
         <!-- Feature 4 -->
-        <div class="glass-card p-8 rounded-3xl flex flex-col justify-between group">
+        <div class="glass-card p-8 rounded-3xl flex flex-col justify-between group border border-white/5 premium-border">
           <div class="space-y-4">
-            <div class="w-12 h-12 rounded-2xl bg-emerald-500/10 flex items-center justify-center text-emerald-400 group-hover:bg-emerald-500/20 transition-all duration-300">
+            <div class="w-12 h-12 rounded-2xl bg-emerald-500/10 flex items-center justify-center text-emerald-400 group-hover:bg-emerald-500/20 group-hover:scale-110 transition-all duration-300">
               <i class="fa-solid fa-sparkles text-xl"></i>
             </div>
-            <h3 class="font-display font-bold text-xl text-white">AI-Powered Suggestions</h3>
-            <p class="text-gray-400 dark:text-gray-400 light:text-gray-600">Don't just find problems; get solutions. Our AI generates redesigned component snippets and CSS fixes ready for implementation.</p>
+            <h3 class="font-display font-bold text-xl text-white">Interactive CSS Patches</h3>
+            <p class="text-gray-400 dark:text-gray-400 light:text-gray-600">Every design audit card generates precise CSS repair codes. View, copy, or apply visual fixes directly in our sandbox browser.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Competitor Benchmarking -->
-    <section id="benchmarks" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+    <!-- Statistics Section -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 scroll-reveal">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div class="glass-card p-6 text-center border border-white/5 premium-border">
+          <div class="text-4xl font-extrabold font-display bg-gradient-to-r from-brand-400 to-blue-400 bg-clip-text text-transparent">1.2M+</div>
+          <div class="text-xs text-gray-500 uppercase tracking-widest font-semibold mt-2">Websites Audited</div>
+        </div>
+        <div class="glass-card p-6 text-center border border-white/5 premium-border">
+          <div class="text-4xl font-extrabold font-display bg-gradient-to-r from-brand-400 to-fuchsia-400 bg-clip-text text-transparent">14.6%</div>
+          <div class="text-xs text-gray-500 uppercase tracking-widest font-semibold mt-2">Avg. Conversion Lift</div>
+        </div>
+        <div class="glass-card p-6 text-center border border-white/5 premium-border">
+          <div class="text-4xl font-extrabold font-display bg-gradient-to-r from-blue-400 to-emerald-400 bg-clip-text text-transparent">94%</div>
+          <div class="text-xs text-gray-500 uppercase tracking-widest font-semibold mt-2">Gaze Map Accuracy</div>
+        </div>
+        <div class="glass-card p-6 text-center border border-white/5 premium-border">
+          <div class="text-4xl font-extrabold font-display bg-gradient-to-r from-purple-450 to-pink-400 bg-clip-text text-transparent">&lt; 15s</div>
+          <div class="text-xs text-gray-500 uppercase tracking-widest font-semibold mt-2">Scan & Audit Time</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 scroll-reveal">
       <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
-        <h2 class="font-display font-bold text-3xl md:text-5xl text-white">Competitor Benchmarking</h2>
-        <p class="text-gray-400 dark:text-gray-400 light:text-gray-600">See how your design stack ranks against industry leaders.</p>
+        <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-brand-500/10 border border-brand-500/20 text-[10px] font-bold text-brand-300 uppercase tracking-widest">Workflow</div>
+        <h2 class="font-display font-bold text-3xl md:text-5xl text-white">How DesignIQ AI Works</h2>
+        <p class="text-gray-400 dark:text-gray-400 light:text-gray-600">Four simple steps to transform your visual layout into a high-converting experience.</p>
       </div>
 
-      <div class="glass-card rounded-3xl overflow-hidden border border-white/10">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
+        <!-- Connecting Line for desktop -->
+        <div class="hidden md:block absolute top-[40px] left-[15%] right-[15%] h-[2px] bg-gradient-to-r from-brand-600/30 via-fuchsia-600/30 to-blue-600/30 -z-10"></div>
+        
+        <!-- Step 1 -->
+        <div class="glass-card p-6 rounded-3xl text-center space-y-4 border border-white/5 premium-border relative bg-slate-950/40">
+          <div class="w-10 h-10 rounded-xl bg-brand-600 text-white flex items-center justify-center font-bold text-sm mx-auto shadow-lg shadow-brand-500/25">1</div>
+          <h4 class="font-display font-bold text-white text-base">Input URL or Code</h4>
+          <p class="text-xs text-gray-400 leading-relaxed">Paste your public URL or raw HTML/CSS directly inside the designer audit console.</p>
+        </div>
+        <!-- Step 2 -->
+        <div class="glass-card p-6 rounded-3xl text-center space-y-4 border border-white/5 premium-border relative bg-slate-950/40">
+          <div class="w-10 h-10 rounded-xl bg-fuchsia-600 text-white flex items-center justify-center font-bold text-sm mx-auto shadow-lg shadow-fuchsia-500/25">2</div>
+          <h4 class="font-display font-bold text-white text-base">Run Heuristic Core</h4>
+          <p class="text-xs text-gray-400 leading-relaxed">Audits 500+ design variables covering spacing, responsiveness, contrast, and font scales.</p>
+        </div>
+        <!-- Step 3 -->
+        <div class="glass-card p-6 rounded-3xl text-center space-y-4 border border-white/5 premium-border relative bg-slate-950/40">
+          <div class="w-10 h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center font-bold text-sm mx-auto shadow-lg shadow-blue-500/25">3</div>
+          <h4 class="font-display font-bold text-white text-base">View Gaze Map</h4>
+          <p class="text-xs text-gray-400 leading-relaxed">Analyze F-Pattern & Z-Pattern visual flows to track where visitors spend their focus.</p>
+        </div>
+        <!-- Step 4 -->
+        <div class="glass-card p-6 rounded-3xl text-center space-y-4 border border-white/5 premium-border relative bg-slate-950/40">
+          <div class="w-10 h-10 rounded-xl bg-emerald-600 text-white flex items-center justify-center font-bold text-sm mx-auto shadow-lg shadow-emerald-500/25">4</div>
+          <h4 class="font-display font-bold text-white text-base">Inject Style Repairs</h4>
+          <p class="text-xs text-gray-400 leading-relaxed">Instantly verify visual improvement inside the mockup by clicking "Apply Visual Fix".</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Competitor Benchmarking -->
+    <section id="benchmarks" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 scroll-reveal">
+      <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+        <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-brand-500/10 border border-brand-500/20 text-[10px] font-bold text-brand-300 uppercase tracking-widest">Benchmarking</div>
+        <h2 class="font-display font-bold text-3xl md:text-5xl text-white">Compare Design Metrics</h2>
+        <p class="text-gray-400 dark:text-gray-400 light:text-gray-600">See how your design implementation compares to industry standard parameters.</p>
+      </div>
+
+      <div class="glass-card rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
         <div class="overflow-x-auto">
           <table class="w-full text-left border-collapse">
             <thead>
-              <tr class="border-b border-white/10 bg-white/5 font-mono text-xs text-gray-400 uppercase tracking-wider">
-                <th class="p-6">Metric</th>
-                <th class="p-6 text-brand-400 font-bold">Your Site (TechFlow.io)</th>
-                <th class="p-6">Competitor A</th>
-                <th class="p-6">Competitor B</th>
+              <tr class="border-b border-white/10 bg-slate-950/60 font-mono text-xs text-gray-400 uppercase tracking-wider">
+                <th class="p-6">Performance Dimension</th>
+                <th class="p-6 text-brand-400 font-bold">Your Target Site</th>
+                <th class="p-6">Standard Platform</th>
+                <th class="p-6">Outdated Framework</th>
               </tr>
             </thead>
             <tbody class="divide-y divide-white/5 text-sm">
               <tr>
-                <td class="p-6 font-medium text-white">Design IQ Score</td>
+                <td class="p-6 font-medium text-white">Design IQ Index</td>
                 <td class="p-6 text-brand-300 font-bold flex items-center space-x-3">
-                  <span>84</span>
+                  <span>84/100</span>
                   <div class="w-24 h-2 rounded-full bg-white/10 overflow-hidden hidden sm:block">
                     <div class="h-full bg-brand-500" style="width: 84%"></div>
                   </div>
                 </td>
-                <td class="p-6 text-gray-400">72</td>
-                <td class="p-6 text-gray-400">68</td>
+                <td class="p-6 text-gray-400">72/100</td>
+                <td class="p-6 text-gray-400">55/100</td>
               </tr>
               <tr>
-                <td class="p-6 font-medium text-white">UX Friction</td>
-                <td class="p-6"><span class="px-2 py-1 rounded bg-emerald-500/20 text-emerald-400 text-xs font-semibold uppercase font-mono">Low</span></td>
-                <td class="p-6"><span class="px-2 py-1 rounded bg-yellow-500/20 text-yellow-400 text-xs font-semibold uppercase font-mono">Medium</span></td>
-                <td class="p-6"><span class="px-2 py-1 rounded bg-red-500/20 text-red-400 text-xs font-semibold uppercase font-mono">High</span></td>
+                <td class="p-6 font-medium text-white">UX Friction Severity</td>
+                <td class="p-6"><span class="px-2.5 py-1 rounded-xl bg-emerald-500/20 text-emerald-400 text-xs font-bold uppercase font-mono">Low</span></td>
+                <td class="p-6"><span class="px-2.5 py-1 rounded-xl bg-yellow-500/20 text-yellow-400 text-xs font-bold uppercase font-mono">Medium</span></td>
+                <td class="p-6"><span class="px-2.5 py-1 rounded-xl bg-red-500/20 text-red-400 text-xs font-bold uppercase font-mono">Critical</span></td>
               </tr>
               <tr>
-                <td class="p-6 font-medium text-white">Page Speed (LCP)</td>
-                <td class="p-6 text-emerald-400 font-bold"><i class="fa-solid fa-bolt mr-1.5"></i> 1.2s</td>
-                <td class="p-6 text-gray-400">2.4s</td>
-                <td class="p-6 text-gray-400">3.1s</td>
+                <td class="p-6 font-medium text-white">Interactive LCP Speed</td>
+                <td class="p-6 text-emerald-400 font-bold"><i class="fa-solid fa-bolt mr-1.5"></i> 1.2 seconds</td>
+                <td class="p-6 text-gray-400">2.4 seconds</td>
+                <td class="p-6 text-gray-400">4.8 seconds</td>
               </tr>
               <tr>
-                <td class="p-6 font-medium text-white">Accessibility</td>
-                <td class="p-6 text-brand-300 font-bold"><i class="fa-solid fa-circle-check mr-1.5"></i> 98%</td>
-                <td class="p-6 text-gray-400">82%</td>
-                <td class="p-6 text-gray-400">75%</td>
+                <td class="p-6 font-medium text-white">WCAG Accessibility Score</td>
+                <td class="p-6 text-brand-300 font-bold"><i class="fa-solid fa-circle-check mr-1.5"></i> 98% Compliance</td>
+                <td class="p-6 text-gray-400">82% Compliance</td>
+                <td class="p-6 text-gray-400">60% Compliance</td>
               </tr>
             </tbody>
           </table>
@@ -762,40 +985,41 @@
     </section>
 
     <!-- Testimonials Bento Section -->
-    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 scroll-reveal">
       <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+        <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-brand-500/10 border border-brand-500/20 text-[10px] font-bold text-brand-300 uppercase tracking-widest">Reviews</div>
         <h2 class="font-display font-bold text-3xl md:text-5xl text-white">Validated by Design Teams</h2>
         <p class="text-gray-400 dark:text-gray-400 light:text-gray-600">Leading product builders rely on DesignIQ AI to scale visual excellence without delays.</p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="glass-card p-6 rounded-3xl space-y-4 flex flex-col justify-between">
+        <div class="glass-card p-6 rounded-3xl space-y-4 flex flex-col justify-between border border-white/5 bg-slate-950/30">
           <p class="text-gray-300 italic dark:text-gray-300 light:text-gray-600">"Using DesignIQ is like having an expert lead designer analyze our code and UI layout inside our CI/CD pipeline. Our conversion rates increased by 14% after fixing contrast and visual hierarchical errors."</p>
-          <div class="flex items-center space-x-3">
+          <div class="flex items-center space-x-3 pt-4 border-t border-white/5">
             <div class="w-10 h-10 rounded-full bg-brand-500/30 flex items-center justify-center font-bold text-white">SK</div>
             <div>
               <h4 class="text-sm font-semibold text-white">Sarah Jenkins</h4>
-              <p class="text-xs text-gray-500">VP of Product, LinearTech</p>
+              <p class="text-[10px] text-gray-500">VP of Product, LinearTech</p>
             </div>
           </div>
         </div>
-        <div class="glass-card p-6 rounded-3xl space-y-4 flex flex-col justify-between">
+        <div class="glass-card p-6 rounded-3xl space-y-4 flex flex-col justify-between border border-white/5 bg-slate-950/30">
           <p class="text-gray-300 italic dark:text-gray-300 light:text-gray-600">"The circular heatmap and element spacing analysis pinpointed exactly why users were missing our secondary CTA. Redesigned with AI recommendations, now in production."</p>
-          <div class="flex items-center space-x-3">
+          <div class="flex items-center space-x-3 pt-4 border-t border-white/5">
             <div class="w-10 h-10 rounded-full bg-blue-500/30 flex items-center justify-center font-bold text-white">MK</div>
             <div>
               <h4 class="text-sm font-semibold text-white">Marcus Vance</h4>
-              <p class="text-xs text-gray-500">Design Principal, StripeFlow</p>
+              <p class="text-[10px] text-gray-500">Design Principal, StripeFlow</p>
             </div>
           </div>
         </div>
-        <div class="glass-card p-6 rounded-3xl space-y-4 flex flex-col justify-between">
+        <div class="glass-card p-6 rounded-3xl space-y-4 flex flex-col justify-between border border-white/5 bg-slate-950/30">
           <p class="text-gray-300 italic dark:text-gray-300 light:text-gray-600">"As a single developer, I lack the design polish instinct. DesignIQ AI found 15 separate line-height and typography alignment bugs. Extremely satisfied!"</p>
-          <div class="flex items-center space-x-3">
+          <div class="flex items-center space-x-3 pt-4 border-t border-white/5">
             <div class="w-10 h-10 rounded-full bg-pink-500/30 flex items-center justify-center font-bold text-white">AL</div>
             <div>
               <h4 class="text-sm font-semibold text-white">Alex Logan</h4>
-              <p class="text-xs text-gray-500">Founder, GhostStack</p>
+              <p class="text-[10px] text-gray-500">Founder, GhostStack</p>
             </div>
           </div>
         </div>
@@ -803,8 +1027,9 @@
     </section>
 
     <!-- Pricing Section -->
-    <section id="pricing" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+    <section id="pricing" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 scroll-reveal">
       <div class="text-center max-w-3xl mx-auto mb-12 space-y-4">
+        <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-brand-500/10 border border-brand-500/20 text-[10px] font-bold text-brand-300 uppercase tracking-widest">Pricing</div>
         <h2 class="font-display font-bold text-3xl md:text-5xl text-white">Scalable Intelligence</h2>
         <p class="text-gray-400 dark:text-gray-400 light:text-gray-600">Flexible plans tailored for individual builders and enterprise design hubs.</p>
         
@@ -823,9 +1048,9 @@
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
         <!-- Basic -->
-        <div class="glass-card p-8 rounded-3xl flex flex-col justify-between border-white/5 relative">
+        <div class="glass-card p-8 rounded-3xl flex flex-col justify-between border border-white/5 relative bg-slate-950/30">
           <div class="space-y-6">
-            <h3 class="font-display font-bold text-xl text-white">Basic</h3>
+            <h3 class="font-display font-bold text-xl text-white">Starter</h3>
             <div class="flex items-baseline text-white">
               <span class="text-4xl font-bold font-display">$0</span>
               <span class="text-gray-500 ml-2">/mo</span>
@@ -836,11 +1061,11 @@
               <li class="flex items-center space-x-3"><i class="fa-solid fa-check text-brand-400 text-xs"></i> <span>PDF Export</span></li>
             </ul>
           </div>
-          <button onclick="scrollToInput()" class="w-full py-3 rounded-xl border border-white/10 hover:bg-white/5 text-white font-medium transition-colors duration-200 mt-8">Start Free</button>
+          <button onclick="scrollToInput()" class="w-full py-3 rounded-xl border border-white/10 hover:bg-white/5 text-white font-medium transition-colors duration-200 mt-8 cursor-pointer">Start Free</button>
         </div>
 
         <!-- Pro -->
-        <div class="glass-card p-8 rounded-3xl flex flex-col justify-between border-brand-500/50 shadow-xl shadow-brand-500/10 relative">
+        <div class="glass-card p-8 rounded-3xl flex flex-col justify-between border-brand-500/50 shadow-xl shadow-brand-500/10 relative bg-slate-950/40">
           <div class="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full bg-gradient-to-r from-brand-600 to-blue-600 text-[11px] font-bold tracking-wider text-white uppercase shadow-lg">Most Popular</div>
           <div class="space-y-6">
             <h3 class="font-display font-bold text-xl text-white">Pro</h3>
@@ -855,11 +1080,11 @@
               <li class="flex items-center space-x-3"><i class="fa-solid fa-check text-brand-400 text-xs"></i> <span>Priority Processing</span></li>
             </ul>
           </div>
-          <button onclick="scrollToInput()" class="w-full py-3 rounded-xl bg-gradient-to-r from-brand-600 to-blue-600 hover:from-brand-500 hover:to-blue-500 text-white font-medium transition-all duration-200 mt-8 shadow-md shadow-brand-500/20">Get Started</button>
+          <button onclick="scrollToInput()" class="w-full py-3 rounded-xl bg-gradient-to-r from-brand-600 to-blue-600 hover:from-brand-500 hover:to-blue-500 text-white font-medium transition-all duration-200 mt-8 shadow-md shadow-brand-500/20 cursor-pointer">Get Started</button>
         </div>
 
         <!-- Enterprise -->
-        <div class="glass-card p-8 rounded-3xl flex flex-col justify-between border-white/5 relative">
+        <div class="glass-card p-8 rounded-3xl flex flex-col justify-between border border-white/5 relative bg-slate-950/30">
           <div class="space-y-6">
             <h3 class="font-display font-bold text-xl text-white">Enterprise</h3>
             <div class="flex items-baseline text-white">
@@ -871,14 +1096,15 @@
               <li class="flex items-center space-x-3"><i class="fa-solid fa-check text-brand-400 text-xs"></i> <span>White-labeled Reports</span></li>
             </ul>
           </div>
-          <button onclick="alert('Enterprise sales team contacted!')" class="w-full py-3 rounded-xl border border-white/10 hover:bg-white/5 text-white font-medium transition-colors duration-200 mt-8">Contact Sales</button>
+          <button onclick="alert('Enterprise sales team contacted!')" class="w-full py-3 rounded-xl border border-white/10 hover:bg-white/5 text-white font-medium transition-colors duration-200 mt-8 cursor-pointer">Contact Sales</button>
         </div>
       </div>
     </section>
 
     <!-- FAQ Accordion Section -->
-    <section id="faq" class="max-w-4xl mx-auto px-4 sm:px-6 py-20">
+    <section id="faq" class="max-w-4xl mx-auto px-4 sm:px-6 py-20 scroll-reveal">
       <div class="text-center mb-16 space-y-4">
+        <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-brand-500/10 border border-brand-500/20 text-[10px] font-bold text-brand-300 uppercase tracking-widest">FAQ</div>
         <h2 class="font-display font-bold text-3xl md:text-5xl text-white">Frequently Asked</h2>
         <p class="text-gray-400 dark:text-gray-400 light:text-gray-600">Clear questions and answers on how DesignIQ compiles visual reports.</p>
       </div>
@@ -886,37 +1112,37 @@
       <div class="space-y-4">
         <!-- FAQ 1 -->
         <div class="glass rounded-2xl border border-white/5 overflow-hidden transition-all duration-300">
-          <button class="w-full p-6 text-left flex items-center justify-between font-semibold font-display text-white" onclick="toggleFaq(this)">
+          <button class="w-full p-6 text-left flex items-center justify-between font-semibold font-display text-white outline-none cursor-pointer" onclick="toggleFaq(this)">
             <span>How accurate is the gaze modeling?</span>
             <i class="fa-solid fa-chevron-down text-brand-400 transition-transform duration-300"></i>
           </button>
-          <div class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+          <div class="max-h-0 overflow-hidden transition-all duration-350 ease-in-out">
             <p class="p-6 pt-0 text-sm text-gray-400 dark:text-gray-400 light:text-gray-600 border-t border-white/5 leading-relaxed">
-              Our gaze modeling utilizes a proprietary neural network trained on over 5,000,000 real user eye-tracking sessions. It predicts visual attention with over 94% accuracy compared to physical infrared laboratory hardware.
+              Our gaze modeling utilizes a predictive attention map algorithm simulated on over 5,000,000 user eye-tracking sessions. It helps outline high-priority content reading paths with over 94% alignment accuracy compared to hardware eye trackers.
             </p>
           </div>
         </div>
         <!-- FAQ 2 -->
         <div class="glass rounded-2xl border border-white/5 overflow-hidden transition-all duration-300">
-          <button class="w-full p-6 text-left flex items-center justify-between font-semibold font-display text-white" onclick="toggleFaq(this)">
+          <button class="w-full p-6 text-left flex items-center justify-between font-semibold font-display text-white outline-none cursor-pointer" onclick="toggleFaq(this)">
             <span>Can it audit password-protected pages?</span>
             <i class="fa-solid fa-chevron-down text-brand-400 transition-transform duration-300"></i>
           </button>
-          <div class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+          <div class="max-h-0 overflow-hidden transition-all duration-350 ease-in-out">
             <p class="p-6 pt-0 text-sm text-gray-400 dark:text-gray-400 light:text-gray-600 border-t border-white/5 leading-relaxed">
-              Yes, with our Chrome extension, you can securely capture the rendered state of any password-protected, staging, or locally hosted workspace and pass the compiled canvas structure securely to our AI model.
+              Yes, using our local copy audit feature, you can copy and paste the raw HTML source code of any logged-in session, staging site, or local environment directly into the audit console to run checks.
             </p>
           </div>
         </div>
         <!-- FAQ 3 -->
         <div class="glass rounded-2xl border border-white/5 overflow-hidden transition-all duration-300">
-          <button class="w-full p-6 text-left flex items-center justify-between font-semibold font-display text-white" onclick="toggleFaq(this)">
+          <button class="w-full p-6 text-left flex items-center justify-between font-semibold font-display text-white outline-none cursor-pointer" onclick="toggleFaq(this)">
             <span>Does this replace a human designer?</span>
             <i class="fa-solid fa-chevron-down text-brand-400 transition-transform duration-300"></i>
           </button>
-          <div class="max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+          <div class="max-h-0 overflow-hidden transition-all duration-350 ease-in-out">
             <p class="p-6 pt-0 text-sm text-gray-400 dark:text-gray-400 light:text-gray-600 border-t border-white/5 leading-relaxed">
-              No, DesignIQ AI acts as a dedicated co-pilot. It handles the objective visual audits, accessibility checks, and spatial ratios so that designers can focus on creative storytelling, product branding, and complex flows.
+              No, DesignIQ AI is an automated design co-pilot. It handles visual audits, typography scales, spacing offsets, and speed issues so that human designers can focus on creative branding, layout innovation, and visual storytelling.
             </p>
           </div>
         </div>
@@ -1155,6 +1381,10 @@
           <span class="flex-1 text-left">AI Audit Cards</span>
           <span class="px-2 py-0.5 rounded-full bg-brand-500 text-white text-[10px] font-bold" id="badge-suggestions-count">20</span>
         </button>
+        <button onclick="switchTab('roadmap')" class="tab-btn w-full px-4 py-3 rounded-xl flex items-center space-x-3 text-sm font-medium transition-all duration-200 text-gray-400 hover:bg-white/5 hover:text-white" id="btn-tab-roadmap">
+          <i class="fa-solid fa-route w-5"></i>
+          <span>Redesign Roadmap</span>
+        </button>
         <button onclick="switchTab('redesign')" class="tab-btn w-full px-4 py-3 rounded-xl flex items-center space-x-3 text-sm font-medium transition-all duration-200 text-gray-400 hover:bg-white/5 hover:text-white" id="btn-tab-redesign">
           <i class="fa-solid fa-wand-magic-sparkles w-5"></i>
           <span>AI Redesign Slider</span>
@@ -1191,319 +1421,504 @@
       <!-- Main workspace container viewport -->
       <main class="flex-1 w-full space-y-8">
         
-        <!-- Tab 1: Overview Dashboard -->
+        <!-- Tab 1: Overview Dashboard -->        <!-- Tab 1: Overview Dashboard -->
         <div id="tab-overview" class="tab-content space-y-8 animate-fade-in-up">
+          
+          <!-- PREMIUM AI EXECUTIVE SUMMARY & BUSINESS IMPACT MODULE -->
+          <div class="glass-card p-8 rounded-3xl border border-white/5 bg-slate-950/40 space-y-6 relative overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-tr from-brand-600/5 to-blue-500/5 pointer-events-none"></div>
+            
+            <div class="flex items-center space-x-3 border-b border-white/5 pb-4">
+              <div class="w-10 h-10 rounded-2xl bg-brand-500/10 flex items-center justify-center text-brand-400 shrink-0">
+                <i class="fa-solid fa-sparkles text-lg animate-pulse"></i>
+              </div>
+              <div>
+                <h3 class="font-display font-bold text-lg text-white">AI Executive Design Audit Summary</h3>
+                <p class="text-[9px] text-gray-500 uppercase tracking-widest font-mono font-bold">Compiled by DesignIQ Core Engine</p>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+              <!-- Synthesis Description -->
+              <div class="lg:col-span-2 space-y-4">
+                <div class="text-xs text-gray-400 font-bold uppercase tracking-wider font-mono">Overall Synthesis</div>
+                <p class="text-xs text-gray-300 leading-relaxed font-sans" id="ai-summary-text">
+                  Analyzing spatial layout parameters...
+                </p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                  <div class="bg-slate-900/40 border border-white/5 rounded-2xl p-4">
+                    <div class="text-[10px] text-emerald-400 font-bold uppercase tracking-wider flex items-center space-x-1.5 font-mono">
+                      <i class="fa-solid fa-circle-check"></i>
+                      <span>Design Strengths</span>
+                    </div>
+                    <ul class="text-[11px] text-gray-400 mt-2 list-disc pl-4 space-y-1" id="ai-strengths-list">
+                      <li>Modern color scheme base foundations</li>
+                      <li>Highly structured header navigation hierarchy</li>
+                    </ul>
+                  </div>
+                  <div class="bg-slate-900/40 border border-white/5 rounded-2xl p-4">
+                    <div class="text-[10px] text-red-400 font-bold uppercase tracking-wider flex items-center space-x-1.5 font-mono">
+                      <i class="fa-solid fa-circle-xmark"></i>
+                      <span>Design Weaknesses</span>
+                    </div>
+                    <ul class="text-[11px] text-gray-400 mt-2 list-disc pl-4 space-y-1" id="ai-weaknesses-list">
+                      <li>Insufficient contrast ratios on CTA triggers</li>
+                      <li>Fixed layout boundaries breaking mobile fluid scale</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Estimated Business Impact Indicators -->
+              <div class="space-y-4 bg-slate-950/60 p-6 rounded-2xl border border-white/5 flex flex-col justify-between">
+                <div>
+                  <div class="text-xs text-gray-400 font-bold uppercase tracking-wider font-mono mb-4">Estimated Project Impact</div>
+                  <div class="space-y-4">
+                    <div class="space-y-1.5">
+                      <div class="flex items-center justify-between text-xs">
+                        <span class="text-gray-400">Est. UX Improvement</span>
+                        <span class="font-bold text-brand-300 font-mono" id="impact-ux">+24%</span>
+                      </div>
+                      <div class="h-1.5 bg-white/5 rounded-full overflow-hidden"><div class="h-full bg-brand-500 rounded-full transition-all duration-1000" id="impact-bar-ux" style="width: 24%"></div></div>
+                    </div>
+
+                    <div class="space-y-1.5">
+                      <div class="flex items-center justify-between text-xs">
+                        <span class="text-gray-400">Est. SEO Improvement</span>
+                        <span class="font-bold text-blue-300 font-mono" id="impact-seo">+18%</span>
+                      </div>
+                      <div class="h-1.5 bg-white/5 rounded-full overflow-hidden"><div class="h-full bg-blue-500 rounded-full transition-all duration-1000" id="impact-bar-seo" style="width: 18%"></div></div>
+                    </div>
+
+                    <div class="space-y-1.5">
+                      <div class="flex items-center justify-between text-xs">
+                        <span class="text-gray-400">Est. Conversion Increase</span>
+                        <span class="font-bold text-emerald-300 font-mono" id="impact-conv">+14.6%</span>
+                      </div>
+                      <div class="h-1.5 bg-white/5 rounded-full overflow-hidden"><div class="h-full bg-emerald-500 rounded-full transition-all duration-1000" id="impact-bar-conv" style="width: 14.6%"></div></div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="pt-4 border-t border-white/5 text-[10px] text-gray-500">
+                  <span class="text-brand-400 font-bold">Top Priority Fix:</span> <span id="top-priority-fix-text">Standardize primary CTA contrast ratio.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
             <!-- Main circular score card -->
             <div class="md:col-span-4 glass-card p-6 rounded-3xl text-center flex flex-col justify-between items-center relative min-h-[300px]">
               <div>
-                <h3 class="font-display font-semibold text-lg text-white mb-4">Overall Quality</h3>
+                <h3 class="font-display font-semibold text-base text-white mb-4">Overall Score Index</h3>
                 <canvas id="scoreCanvas" width="180" height="180" class="mx-auto"></canvas>
               </div>
-              <div class="mt-4">
-                <span class="px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xs uppercase tracking-wide">Excellent Design IQ</span>
-                <p class="text-[11px] text-gray-500 mt-2">DesignIQ AI audited 20 issues on the target URL.</p>
+              <div class="mt-4 w-full">
+                <span class="px-3 py-1.5 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xs uppercase tracking-wide border border-emerald-500/10 inline-block" id="ov-score-badge">Excellent Design IQ</span>
+                <p class="text-[10px] text-gray-500 mt-2.5" id="ov-score-desc">DesignIQ AI audited 20 issues on the target URL.</p>
               </div>
             </div>
 
             <!-- Dynamic metrics mini tracker -->
             <div class="md:col-span-8 glass-card p-6 rounded-3xl flex flex-col justify-between">
               <div>
-                <h3 class="font-display font-semibold text-lg text-white mb-4">Core Dimensions Performance</h3>
-                <div class="grid grid-cols-2 gap-4">
-                  <div>
-                    <div class="flex justify-between text-xs text-gray-400 mb-1"><span>UI Design</span><span class="text-white font-bold" id="ov-ui">92%</span></div>
-                    <div class="h-2 bg-white/5 rounded-full overflow-hidden"><div class="h-full bg-brand-500 transition-all duration-500" id="bar-ui" style="width: 92%"></div></div>
+                <h3 class="font-display font-semibold text-base text-white mb-6">Core Dimension Indicators</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-5">
+                  <div class="space-y-2">
+                    <div class="flex justify-between text-xs text-gray-400"><span>UI Design</span><span class="text-white font-bold font-mono" id="ov-ui">92%</span></div>
+                    <div class="h-2 bg-white/5 rounded-full overflow-hidden"><div class="h-full bg-brand-500 rounded-full transition-all duration-500" id="bar-ui" style="width: 92%"></div></div>
                   </div>
-                  <div>
-                    <div class="flex justify-between text-xs text-gray-400 mb-1"><span>UX / Layout</span><span class="text-white font-bold" id="ov-ux">90%</span></div>
-                    <div class="h-2 bg-white/5 rounded-full overflow-hidden"><div class="h-full bg-blue-500 transition-all duration-500" id="bar-ux" style="width: 90%"></div></div>
+                  <div class="space-y-2">
+                    <div class="flex justify-between text-xs text-gray-400"><span>UX / Layout</span><span class="text-white font-bold font-mono" id="ov-ux">90%</span></div>
+                    <div class="h-2 bg-white/5 rounded-full overflow-hidden"><div class="h-full bg-blue-500 rounded-full transition-all duration-500" id="bar-ux" style="width: 90%"></div></div>
                   </div>
-                  <div>
-                    <div class="flex justify-between text-xs text-gray-400 mb-1"><span>SEO Performance</span><span class="text-white font-bold" id="ov-seo">84%</span></div>
-                    <div class="h-2 bg-white/5 rounded-full overflow-hidden"><div class="h-full bg-purple-500 transition-all duration-500" id="bar-seo" style="width: 84%"></div></div>
+                  <div class="space-y-2">
+                    <div class="flex justify-between text-xs text-gray-400"><span>SEO Performance</span><span class="text-white font-bold font-mono" id="ov-seo">84%</span></div>
+                    <div class="h-2 bg-white/5 rounded-full overflow-hidden"><div class="h-full bg-purple-500 rounded-full transition-all duration-500" id="bar-seo" style="width: 84%"></div></div>
                   </div>
-                  <div>
-                    <div class="flex justify-between text-xs text-gray-400 mb-1"><span>Core Web Vitals</span><span class="text-white font-bold" id="ov-vitals">78%</span></div>
-                    <div class="h-2 bg-white/5 rounded-full overflow-hidden"><div class="h-full bg-pink-500 transition-all duration-500" id="bar-vitals" style="width: 78%"></div></div>
+                  <div class="space-y-2">
+                    <div class="flex justify-between text-xs text-gray-400"><span>Core Web Vitals</span><span class="text-white font-bold font-mono" id="ov-vitals">78%</span></div>
+                    <div class="h-2 bg-white/5 rounded-full overflow-hidden"><div class="h-full bg-pink-500 rounded-full transition-all duration-500" id="bar-vitals" style="width: 78%"></div></div>
                   </div>
                 </div>
               </div>
 
               <!-- High level AI audit summary -->
-              <div class="mt-6 pt-6 border-t border-white/5 space-y-2">
+              <div class="mt-6 pt-6 border-t border-white/5 space-y-2.5">
                 <div class="flex items-center space-x-2 text-brand-400 text-xs font-bold"><i class="fa-solid fa-robot"></i> <span>DesignIQ AI Synthesis</span></div>
-                <p class="text-xs text-gray-400 dark:text-gray-400 light:text-gray-600 leading-relaxed">
-                  Your site exhibits extremely strong typography standards and clean spatial tracking. However, visual accessibility was flagged as an issue due to low button contrast, which significantly degrades overall score. Apply the 20 auto-fixes below to reach optimal state.
+                <p class="text-xs text-gray-400 dark:text-gray-400 light:text-gray-600 leading-relaxed" id="dashboard-synthesis-text">
+                  Your site exhibits extremely strong typography standards and clean spatial tracking. However, visual accessibility was flagged as an issue due to low button contrast, which significantly degrades overall score. Apply the auto-fixes below to reach optimal state.
                 </p>
               </div>
             </div>
           </div>
 
           <!-- Browser Mockup Viewport with Pulse Hotspots -->
-          <div class="glass-card rounded-3xl overflow-hidden border border-white/10 shadow-2xl relative">
-            <div class="flex items-center justify-between bg-slate-950/80 p-4 border-b border-white/10 flex-wrap gap-2">
-              <div class="flex space-x-2 shrink-0">
-                <span class="w-3 h-3 rounded-full bg-red-500/60"></span>
-                <span class="w-3 h-3 rounded-full bg-yellow-500/60"></span>
-                <span class="w-3 h-3 rounded-full bg-green-500/60"></span>
-              </div>
-              
-              <div class="flex items-center space-x-4 max-w-lg w-full justify-center">
-                <div class="px-6 py-1.5 rounded-xl bg-white/5 text-xs text-gray-300 font-mono truncate max-w-[200px] sm:max-w-xs" id="browser-url-text">https://designiq.ai/demo</div>
+          <div class="space-y-4">
+            <h3 class="font-display font-semibold text-base text-white flex items-center space-x-2">
+              <i class="fa-solid fa-desktop text-brand-400"></i>
+              <span>Interactive Mockup Viewer</span>
+            </h3>
+            
+            <div id="workspace-viewport-wrapper" class="w-full mx-auto transition-all duration-300 viewport-transition" style="max-width: 100%;">
+              <div class="glass-card rounded-3xl overflow-hidden border border-white/10 shadow-2xl relative bg-slate-950">
                 
-                <!-- Toggle Switches for Preview mode -->
-                <div class="flex items-center space-x-1 bg-white/5 p-1 rounded-xl border border-white/10 no-print">
-                  <button id="btn-preview-mockup" class="px-2.5 py-1 rounded-lg text-[10px] font-bold bg-brand-600 text-white transition-all flex items-center" onclick="setPreviewMode('mockup')">
-                    <i class="fa-solid fa-wand-magic-sparkles mr-1"></i>Interactive AI Map
-                  </button>
-                  <button id="btn-preview-live" class="px-2.5 py-1 rounded-lg text-[10px] font-bold text-gray-400 hover:text-white transition-all flex items-center" onclick="setPreviewMode('live')">
-                    <i class="fa-solid fa-globe mr-1"></i>Live Site View
-                  </button>
-                </div>
-              </div>
-              
-              <div class="flex items-center space-x-2 shrink-0">
-                <!-- Gaze Trace Selector -->
-                <div class="flex items-center space-x-1 bg-white/5 p-1 rounded-xl border border-white/10 no-print" id="gaze-trace-controls">
-                  <button id="btn-gaze-off" class="px-2 py-0.5 rounded-lg text-[9px] font-bold bg-white/10 text-white transition-all cursor-pointer" onclick="setGazeTrace('off')">Gaze: Off</button>
-                  <button id="btn-gaze-f" class="px-2 py-0.5 rounded-lg text-[9px] font-bold text-gray-400 hover:text-white transition-all cursor-pointer" onclick="setGazeTrace('f')">F-Pattern</button>
-                  <button id="btn-gaze-z" class="px-2 py-0.5 rounded-lg text-[9px] font-bold text-gray-400 hover:text-white transition-all cursor-pointer" onclick="setGazeTrace('z')">Z-Pattern</button>
-                </div>
-                
-                <button onclick="refreshLivePreview()" class="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center hover:bg-white/10 transition-colors" title="Reload Live Frame">
-                  <i class="fa-solid fa-rotate-right text-gray-400 text-xs"></i>
-                </button>
-              </div>
-            </div>
-
-            <!-- Custom Interactive Visual Mockup inside -->
-            <div class="relative min-h-[400px] w-full bg-slate-950 p-6 sm:p-12 flex flex-col justify-between" id="mockup-iframe-layer">
-              <!-- Animated SVG Gaze Pathways -->
-              <div id="gaze-svg-overlay" class="absolute inset-0 pointer-events-none z-10 hidden">
-                <svg class="w-full h-full" viewBox="0 0 500 400" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-                  <!-- F-Pattern Path -->
-                  <path id="gaze-path-f" d="M 50,60 L 450,60 L 50,200 L 300,200 L 50,360" fill="none" stroke="url(#gaze-gradient)" stroke-width="4" stroke-dasharray="1000" stroke-dashoffset="1000" stroke-linecap="round" stroke-linejoin="round" class="transition-all duration-1000"></path>
-                  <!-- Z-Pattern Path -->
-                  <path id="gaze-path-z" d="M 50,60 L 450,60 L 50,360 L 450,360" fill="none" stroke="url(#gaze-gradient)" stroke-width="4" stroke-dasharray="1000" stroke-dashoffset="1000" stroke-linecap="round" stroke-linejoin="round" class="transition-all duration-1000"></path>
-                  
-                  <defs>
-                    <linearGradient id="gaze-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stop-color="#8b5cf6" stop-opacity="0.8" />
-                      <stop offset="50%" stop-color="#ec4899" stop-opacity="0.8" />
-                      <stop offset="100%" stop-color="#3b82f6" stop-opacity="0.8" />
-                    </linearGradient>
-                  </defs>
-
-                  <!-- Fixation points -->
-                  <g id="gaze-fixations-f" class="hidden">
-                    <circle cx="50" cy="60" r="12" fill="#8b5cf6" stroke="#ffffff" stroke-width="2" class="gaze-fixation"></circle>
-                    <text x="50" y="63" fill="#ffffff" font-size="9" font-weight="bold" text-anchor="middle" class="gaze-fixation" style="animation-delay: 0.1s">1</text>
-
-                    <circle cx="450" cy="60" r="12" fill="#a78bfa" stroke="#ffffff" stroke-width="2" class="gaze-fixation"></circle>
-                    <text x="450" y="63" fill="#ffffff" font-size="9" font-weight="bold" text-anchor="middle" class="gaze-fixation" style="animation-delay: 0.6s">2</text>
-
-                    <circle cx="50" cy="200" r="12" fill="#ec4899" stroke="#ffffff" stroke-width="2" class="gaze-fixation"></circle>
-                    <text x="50" y="203" fill="#ffffff" font-size="9" font-weight="bold" text-anchor="middle" class="gaze-fixation" style="animation-delay: 1.1s">3</text>
-
-                    <circle cx="300" cy="200" r="12" fill="#f472b6" stroke="#ffffff" stroke-width="2" class="gaze-fixation"></circle>
-                    <text x="300" y="203" fill="#ffffff" font-size="9" font-weight="bold" text-anchor="middle" class="gaze-fixation" style="animation-delay: 1.6s">4</text>
-
-                    <circle cx="50" cy="360" r="12" fill="#3b82f6" stroke="#ffffff" stroke-width="2" class="gaze-fixation"></circle>
-                    <text x="50" y="363" fill="#ffffff" font-size="9" font-weight="bold" text-anchor="middle" class="gaze-fixation" style="animation-delay: 2.1s">5</text>
-                  </g>
-
-                  <g id="gaze-fixations-z" class="hidden">
-                    <circle cx="50" cy="60" r="12" fill="#8b5cf6" stroke="#ffffff" stroke-width="2" class="gaze-fixation"></circle>
-                    <text x="50" y="63" fill="#ffffff" font-size="9" font-weight="bold" text-anchor="middle" class="gaze-fixation" style="animation-delay: 0.1s">1</text>
-
-                    <circle cx="450" cy="60" r="12" fill="#a78bfa" stroke="#ffffff" stroke-width="2" class="gaze-fixation"></circle>
-                    <text x="450" y="63" fill="#ffffff" font-size="9" font-weight="bold" text-anchor="middle" class="gaze-fixation" style="animation-delay: 0.7s">2</text>
-
-                    <circle cx="50" cy="360" r="12" fill="#ec4899" stroke="#ffffff" stroke-width="2" class="gaze-fixation"></circle>
-                    <text x="50" y="363" fill="#ffffff" font-size="9" font-weight="bold" text-anchor="middle" class="gaze-fixation" style="animation-delay: 1.3s">3</text>
-
-                    <circle cx="450" cy="360" r="12" fill="#3b82f6" stroke="#ffffff" stroke-width="2" class="gaze-fixation"></circle>
-                    <text x="450" y="363" fill="#ffffff" font-size="9" font-weight="bold" text-anchor="middle" class="gaze-fixation" style="animation-delay: 1.9s">4</text>
-                  </g>
-                </svg>
-              </div>
-
-              <!-- Grid BG -->
-              <div class="absolute inset-0 grid-bg opacity-30 pointer-events-none"></div>
-
-              <!-- Floating Hotspots with pulse waves -->
-              <!-- Hotspot 1 -->
-              <div class="absolute top-[20%] left-[15%] z-20 group">
-                <div class="w-4 h-4 rounded-full bg-red-500 animate-ping absolute"></div>
-                <button onclick="highlightSuggestion(0)" class="w-4 h-4 rounded-full bg-red-500 border border-white relative cursor-pointer shadow-lg shadow-red-500/50 flex items-center justify-center text-[8px] font-bold text-white">!</button>
-                <div class="absolute top-6 left-0 bg-black/90 text-[10px] text-white p-2 rounded-lg border border-red-500/40 w-44 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none shadow-xl">
-                  <div class="font-bold text-red-400">High: Contrast Issue</div>
-                  <p class="text-gray-400">Improve button color to match WCAG standards.</p>
-                </div>
-              </div>
-
-              <!-- Hotspot 2 -->
-              <div class="absolute top-[35%] left-[80%] z-20 group">
-                <div class="w-4 h-4 rounded-full bg-yellow-500 animate-ping absolute"></div>
-                <button onclick="highlightSuggestion(3)" class="w-4 h-4 rounded-full bg-yellow-500 border border-white relative cursor-pointer shadow-lg shadow-yellow-500/50 flex items-center justify-center text-[8px] font-bold text-white">!</button>
-                <div class="absolute top-6 right-0 bg-black/90 text-[10px] text-white p-2 rounded-lg border border-yellow-500/40 w-44 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none shadow-xl">
-                  <div class="font-bold text-yellow-400">Medium: Typography Scale</div>
-                  <p class="text-gray-400">Adjust line-height to fix readability.</p>
-                </div>
-              </div>
-
-              <!-- Hotspot 3 -->
-              <div class="absolute bottom-[25%] left-[55%] z-20 group">
-                <div class="w-4 h-4 rounded-full bg-green-500 animate-ping absolute"></div>
-                <button onclick="highlightSuggestion(1)" class="w-4 h-4 rounded-full bg-green-500 border border-white relative cursor-pointer shadow-lg shadow-green-500/50 flex items-center justify-center text-[8px] font-bold text-white">!</button>
-                <div class="absolute top-6 left-0 bg-black/90 text-[10px] text-white p-2 rounded-lg border border-green-500/40 w-44 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none shadow-xl">
-                  <div class="font-bold text-green-400">Low: Border Consistency</div>
-                  <p class="text-gray-400">Standardize border-radius to 12px.</p>
-                </div>
-              </div>
-
-              <div class="relative z-10 space-y-8" id="mock-page-content">
-                <!-- Header mockup -->
-                <div class="flex items-center justify-between border-b border-white/5 pb-4">
-                  <span class="font-bold font-display text-lg text-white" id="mockup-brand-name">TechFlow AI</span>
-                  <div class="flex space-x-4 text-xs text-gray-500">
-                    <span>Products</span><span>Specs</span><span>Pricing</span>
+                <div class="flex items-center justify-between bg-slate-950/80 p-4 border-b border-white/10 flex-wrap gap-2">
+                  <div class="flex space-x-2 shrink-0">
+                    <span class="w-3 h-3 rounded-full bg-red-500/60"></span>
+                    <span class="w-3 h-3 rounded-full bg-yellow-500/60"></span>
+                    <span class="w-3 h-3 rounded-full bg-green-500/60"></span>
                   </div>
-                  <button class="px-3 py-1 bg-white/10 hover:bg-white/20 text-white rounded text-xs" id="mockup-btn-primary">Unlock Free trial</button>
-                </div>
-                <!-- Body mockup -->
-                <div class="max-w-xl space-y-4">
-                  <h1 class="text-3xl sm:text-5xl font-display font-bold text-white tracking-tight" id="mockup-heading">Next-Gen Analytics Engine for High Performance SaaS Platforms</h1>
-                  <p class="text-xs text-gray-400" id="mockup-subtext">Compute pipeline workloads, secure authentication vaults, and trace visual gaze profiles automatically.</p>
-                </div>
-                <!-- Box sections -->
-                <div class="grid grid-cols-3 gap-4 pt-4">
-                  <div class="p-4 bg-white/5 rounded-xl border border-white/5"><div class="w-8 h-8 rounded-lg bg-brand-500/10 mb-2"></div><div class="h-3 bg-white/20 w-3/4 rounded mb-1"></div><div class="h-2 bg-white/10 w-1/2 rounded"></div></div>
-                  <div class="p-4 bg-white/5 rounded-xl border border-white/5"><div class="w-8 h-8 rounded-lg bg-blue-500/10 mb-2"></div><div class="h-3 bg-white/20 w-2/3 rounded mb-1"></div><div class="h-2 bg-white/10 w-1/3 rounded"></div></div>
-                  <div class="p-4 bg-white/5 rounded-xl border border-white/5" id="mockup-card-3"><div class="w-8 h-8 rounded-lg bg-purple-500/10 mb-2"></div><div class="h-3 bg-white/20 w-4/5 rounded mb-1"></div><div class="h-2 bg-white/10 w-2/3 rounded"></div></div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Enhanced Live Viewport Layer with Responsive Resizer & Live AI Sandbox Simulator -->
-            <div id="live-iframe-layer" class="hidden flex flex-col h-[520px] w-full bg-slate-900 border-t border-white/10 overflow-hidden">
-              <!-- Live Simulator Top Bar Controls -->
-              <div class="flex items-center justify-between bg-slate-950 px-4 py-2 border-b border-white/5 flex-wrap gap-2 text-xs text-gray-400 no-print">
-                <!-- Mode Switcher -->
-                <div class="flex items-center space-x-1.5">
-                  <button id="btn-live-embed" class="px-2.5 py-1 rounded-lg font-semibold bg-white/10 text-white transition-all flex items-center space-x-1" onclick="setLiveMode('embed')">
-                    <i class="fa-solid fa-code text-[10px]"></i>
-                    <span>Direct Web Frame</span>
-                  </button>
-                  <button id="btn-live-sandbox" class="px-2.5 py-1 rounded-lg font-semibold text-gray-400 hover:text-white transition-all flex items-center space-x-1" onclick="setLiveMode('sandbox')">
-                    <i class="fa-solid fa-cubes text-[10px]"></i>
-                    <span>AI Interactive Sandbox</span>
-                  </button>
-                </div>
-
-                <!-- Responsive Device Switcher -->
-                <div class="flex items-center space-x-1 bg-white/5 p-0.5 rounded-lg border border-white/10">
-                  <button onclick="setLiveViewport('desktop')" id="btn-vp-desktop" class="w-7 h-7 rounded flex items-center justify-center bg-white/10 text-white hover:text-white transition-colors" title="Desktop Mode (100%)">
-                    <i class="fa-solid fa-desktop text-xs"></i>
-                  </button>
-                  <button onclick="setLiveViewport('tablet')" id="btn-vp-tablet" class="w-7 h-7 rounded flex items-center justify-center text-gray-400 hover:text-white transition-colors" title="Tablet Mode (768px)">
-                    <i class="fa-solid fa-tablet-screen-button text-xs"></i>
-                  </button>
-                  <button onclick="setLiveViewport('mobile')" id="btn-vp-mobile" class="w-7 h-7 rounded flex items-center justify-center text-gray-400 hover:text-white transition-colors" title="Mobile Mode (375px)">
-                    <i class="fa-solid fa-mobile-screen-button text-xs"></i>
-                  </button>
-                </div>
-
-                <!-- Live Patch Control -->
-                <div class="flex items-center space-x-2">
-                  <span class="text-[10px] uppercase font-bold text-gray-500">DesignIQ AI Patches</span>
-                  <button onclick="toggleLivePatches()" id="btn-toggle-patches" class="px-2.5 py-1 rounded-lg font-semibold text-xs border border-brand-500/20 bg-brand-500/10 text-brand-300 hover:bg-brand-500/20 transition-all flex items-center space-x-1">
-                    <i class="fa-solid fa-toggle-off text-sm mr-1 text-gray-500" id="icon-toggle-patches"></i>
-                    <span id="text-toggle-patches" class="text-gray-400">Patches: OFF</span>
-                  </button>
-                </div>
-              </div>
-
-              <!-- Simulator Body viewport -->
-              <div class="flex-1 w-full bg-slate-900 overflow-y-auto p-4 flex justify-center items-start">
-                <div id="live-viewport-container" class="w-full h-full max-w-full transition-all duration-300 flex flex-col">
                   
-                  <!-- View A: Raw External Iframe -->
-                  <div id="live-embed-container" class="w-full h-full relative">
-                    <iframe id="live-preview-iframe" class="w-full h-full border border-white/5 rounded-2xl bg-white shadow-xl" sandbox="allow-scripts allow-same-origin allow-popups"></iframe>
+                  <div class="flex items-center space-x-4 max-w-lg w-full justify-center">
+                    <div class="px-6 py-1.5 rounded-xl bg-white/5 text-xs text-gray-300 font-mono truncate max-w-[200px] sm:max-w-xs" id="browser-url-text">https://designiq.ai/demo</div>
                     
-                    <div class="absolute bottom-3 right-3 left-3 bg-slate-950/95 text-[11px] text-gray-300 p-3 rounded-xl border border-white/10 flex items-start space-x-2 shadow-2xl z-20">
-                      <i class="fa-solid fa-circle-info text-brand-400 text-sm mt-0.5 shrink-0"></i>
-                      <div class="space-y-0.5">
-                        <span class="font-bold text-white block">Embedding Warning</span>
-                        <span class="block text-gray-400 leading-relaxed">If this frame is blank, the target server blocks embedding (CSP/X-Frame-Options). Click <strong class="text-brand-300 cursor-pointer" onclick="setLiveMode('sandbox')">AI Interactive Sandbox</strong> above to run our fully functional client-side interactive simulator!</span>
-                      </div>
+                    <!-- Toggle Switches for Preview mode -->
+                    <div class="flex items-center space-x-1 bg-white/5 p-1 rounded-xl border border-white/10 no-print">
+                      <button id="btn-preview-mockup" class="px-2.5 py-1 rounded-lg text-[10px] font-bold bg-brand-600 text-white transition-all flex items-center" onclick="setPreviewMode('mockup')">
+                        <i class="fa-solid fa-wand-magic-sparkles mr-1"></i>Interactive AI Map
+                      </button>
+                      <button id="btn-preview-live" class="px-2.5 py-1 rounded-lg text-[10px] font-bold text-gray-400 hover:text-white transition-all flex items-center" onclick="setPreviewMode('live')">
+                        <i class="fa-solid fa-globe mr-1"></i>Live Site View
+                      </button>
                     </div>
                   </div>
-
-                  <!-- View B: AI Interactive Sandbox Simulator -->
-                  <div id="live-sandbox-container" class="hidden w-full h-full rounded-2xl bg-slate-950 p-6 sm:p-10 border border-white/10 relative overflow-y-auto flex flex-col justify-between text-white">
-                    <!-- Grid Lines background -->
-                    <div class="absolute inset-0 grid-bg opacity-20 pointer-events-none"></div>
-
-                    <!-- Sandbox Heading / Interactive inspector panel -->
-                    <div class="relative z-10 flex items-center justify-between border-b border-white/5 pb-3 mb-6">
-                      <span class="font-display font-bold text-sm tracking-wide text-white uppercase flex items-center space-x-2">
-                        <i class="fa-solid fa-circle text-emerald-500 animate-pulse text-[8px]"></i>
-                        <span id="sandbox-domain-title">DEMO WORKSPACE</span>
-                      </span>
-                      <div id="sandbox-status-badge" class="px-2.5 py-0.5 rounded-full bg-yellow-500/10 border border-yellow-500/20 text-yellow-400 text-[10px] font-bold">
-                        Standard Unoptimized State
-                      </div>
+                  
+                  <div class="flex items-center space-x-4 shrink-0">
+                    <!-- Responsive Resizer -->
+                    <div class="flex items-center space-x-1 bg-white/5 p-1 rounded-xl border border-white/10 no-print">
+                      <button onclick="setWorkspaceDevice('desktop')" id="btn-vp-ws-desktop" class="w-7 h-7 rounded flex items-center justify-center bg-white/10 text-white transition-colors" title="Desktop Mode">
+                        <i class="fa-solid fa-desktop text-xs"></i>
+                      </button>
+                      <button onclick="setWorkspaceDevice('tablet')" id="btn-vp-ws-tablet" class="w-7 h-7 rounded flex items-center justify-center text-gray-400 hover:text-white transition-colors" title="Tablet Mode">
+                        <i class="fa-solid fa-tablet-screen-button text-xs"></i>
+                      </button>
+                      <button onclick="setWorkspaceDevice('mobile')" id="btn-vp-ws-mobile" class="w-7 h-7 rounded flex items-center justify-center text-gray-400 hover:text-white transition-colors" title="Mobile Mode">
+                        <i class="fa-solid fa-mobile-screen-button text-xs"></i>
+                      </button>
                     </div>
 
-                    <!-- Simulated Site Content -->
-                    <div class="relative z-10 space-y-6 flex-1 flex flex-col justify-center">
-                      <div class="space-y-4 max-w-xl">
-                        <!-- Custom styled elements that respond dynamically to patching toggle -->
-                        <div class="inline-block px-3 py-1 rounded bg-white/5 border border-white/5 text-[10px] font-mono tracking-wider text-gray-400" id="sandbox-category">
-                          LANDING SYSTEM NODE
-                        </div>
-                        <h1 class="text-3xl sm:text-4xl font-display font-bold text-white tracking-tight leading-tight transition-all duration-300" id="sandbox-headline">
-                          Elevated Modern Experience
-                        </h1>
-                        <p class="text-xs text-gray-400 leading-relaxed transition-all duration-300" id="sandbox-paragraph" style="line-height: 1.25;">
-                          Analyze, trace, and refine visual pathways, typography standardizations, and conversion metrics on automatically to secure consistent UI rendering across all responsive layout devices.
-                        </p>
-                      </div>
-
-                      <!-- CTA Button that will dynamically change contrast / padding / size on patch toggle -->
-                      <div class="pt-2">
-                        <button id="sandbox-cta-btn" class="px-4 py-2.5 bg-brand-500/10 text-brand-400 hover:bg-brand-500/20 text-xs font-bold transition-all duration-300 outline-none select-none relative shadow-none" style="border-radius: 2px;">
-                          Get Started Now
-                        </button>
-                      </div>
-
-                      <!-- Responsive stats cards -->
-                      <div class="grid grid-cols-2 gap-4 pt-6 mt-6 border-t border-white/5">
-                        <div class="p-3 bg-white/5 rounded-xl border border-white/5 hover:border-brand-500/20 transition-colors" id="sandbox-stat-card-1">
-                          <div class="text-[10px] text-gray-500 uppercase font-bold mb-1">Gaze Metric</div>
-                          <div class="text-base font-bold text-white font-mono" id="sandbox-stat-1">74% Attention</div>
-                        </div>
-                        <div class="p-3 bg-white/5 rounded-xl border border-white/5 hover:border-brand-500/20 transition-colors" id="sandbox-stat-card-2">
-                          <div class="text-[10px] text-gray-500 uppercase font-bold mb-1">Text Readability</div>
-                          <div class="text-base font-bold text-white font-mono" id="sandbox-stat-2">Low contrast warning</div>
-                        </div>
-                      </div>
+                    <!-- Gaze Trace Selector -->
+                    <div class="flex items-center space-x-1 bg-white/5 p-1 rounded-xl border border-white/10 no-print" id="gaze-trace-controls">
+                      <button id="btn-gaze-off" class="px-2 py-0.5 rounded-lg text-[9px] font-bold bg-white/10 text-white transition-all cursor-pointer font-mono" onclick="setGazeTrace('off')">Gaze: Off</button>
+                      <button id="btn-gaze-f" class="px-2 py-0.5 rounded-lg text-[9px] font-bold text-gray-400 hover:text-white transition-all cursor-pointer font-mono" onclick="setGazeTrace('f')">F-Pattern</button>
+                      <button id="btn-gaze-z" class="px-2 py-0.5 rounded-lg text-[9px] font-bold text-gray-400 hover:text-white transition-all cursor-pointer font-mono" onclick="setGazeTrace('z')">Z-Pattern</button>
                     </div>
-
-                    <!-- Live Inspector Toast Panel on Hover -->
-                    <div id="sandbox-inspector-toast" class="mt-4 bg-slate-900/90 backdrop-blur-md border border-white/10 p-3 rounded-xl flex items-center space-x-3 text-[11px] text-gray-300 relative z-10 transition-all">
-                      <div class="w-2.5 h-2.5 rounded-full bg-brand-500 animate-ping"></div>
-                      <i class="fa-solid fa-magnifying-glass text-brand-400"></i>
-                      <p id="sandbox-inspector-text">Hover or click elements above to inspect style recommendations.</p>
-                    </div>
-
+                    
+                    <button onclick="refreshLivePreview()" class="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center hover:bg-white/10 transition-colors" title="Reload Live Frame">
+                      <i class="fa-solid fa-rotate-right text-gray-400 text-xs"></i>
+                    </button>
                   </div>
-
                 </div>
+
+                <!-- Custom Interactive Visual Mockup inside -->
+                <div class="relative min-h-[400px] w-full bg-slate-950 p-6 sm:p-12 flex flex-col justify-between" id="mockup-iframe-layer">
+                  <!-- Animated SVG Gaze Pathways -->
+                  <div id="gaze-svg-overlay" class="absolute inset-0 pointer-events-none z-10 hidden overflow-hidden">
+                    <svg class="w-full h-full" viewBox="0 0 500 400" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+                      <!-- F-Pattern Path -->
+                      <path id="gaze-path-f" d="M 50,60 L 450,60 L 50,200 L 300,200 L 50,360" fill="none" stroke="url(#gaze-gradient)" stroke-width="4" stroke-dasharray="1000" stroke-dashoffset="1000" stroke-linecap="round" stroke-linejoin="round" class="transition-all duration-1000"></path>
+                      <!-- Z-Pattern Path -->
+                      <path id="gaze-path-z" d="M 50,60 L 450,60 L 50,360 L 450,360" fill="none" stroke="url(#gaze-gradient)" stroke-width="4" stroke-dasharray="1000" stroke-dashoffset="1000" stroke-linecap="round" stroke-linejoin="round" class="transition-all duration-1000"></path>
+                      
+                      <defs>
+                        <linearGradient id="gaze-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                          <stop offset="0%" stop-color="#8b5cf6" stop-opacity="0.8" />
+                          <stop offset="50%" stop-color="#ec4899" stop-opacity="0.8" />
+                          <stop offset="100%" stop-color="#3b82f6" stop-opacity="0.8" />
+                        </linearGradient>
+                      </defs>
+
+                      <!-- Fixation points -->
+                      <g id="gaze-fixations-f" class="hidden">
+                        <circle cx="50" cy="60" r="12" fill="#8b5cf6" stroke="#ffffff" stroke-width="2" class="gaze-fixation"></circle>
+                        <text x="50" y="63" fill="#ffffff" font-size="9" font-weight="bold" text-anchor="middle" class="gaze-fixation" style="animation-delay: 0.1s">1</text>
+
+                        <circle cx="450" cy="60" r="12" fill="#a78bfa" stroke="#ffffff" stroke-width="2" class="gaze-fixation"></circle>
+                        <text x="450" y="63" fill="#ffffff" font-size="9" font-weight="bold" text-anchor="middle" class="gaze-fixation" style="animation-delay: 0.6s">2</text>
+
+                        <circle cx="50" cy="200" r="12" fill="#ec4899" stroke="#ffffff" stroke-width="2" class="gaze-fixation"></circle>
+                        <text x="50" y="203" fill="#ffffff" font-size="9" font-weight="bold" text-anchor="middle" class="gaze-fixation" style="animation-delay: 1.1s">3</text>
+
+                        <circle cx="300" cy="200" r="12" fill="#f472b6" stroke="#ffffff" stroke-width="2" class="gaze-fixation"></circle>
+                        <text x="300" y="203" fill="#ffffff" font-size="9" font-weight="bold" text-anchor="middle" class="gaze-fixation" style="animation-delay: 1.6s">4</text>
+
+                        <circle cx="50" cy="360" r="12" fill="#3b82f6" stroke="#ffffff" stroke-width="2" class="gaze-fixation"></circle>
+                        <text x="50" y="363" fill="#ffffff" font-size="9" font-weight="bold" text-anchor="middle" class="gaze-fixation" style="animation-delay: 2.1s">5</text>
+                      </g>
+
+                      <g id="gaze-fixations-z" class="hidden">
+                        <circle cx="50" cy="60" r="12" fill="#8b5cf6" stroke="#ffffff" stroke-width="2" class="gaze-fixation"></circle>
+                        <text x="50" y="63" fill="#ffffff" font-size="9" font-weight="bold" text-anchor="middle" class="gaze-fixation" style="animation-delay: 0.1s">1</text>
+
+                        <circle cx="450" cy="60" r="12" fill="#a78bfa" stroke="#ffffff" stroke-width="2" class="gaze-fixation"></circle>
+                        <text x="450" y="63" fill="#ffffff" font-size="9" font-weight="bold" text-anchor="middle" class="gaze-fixation" style="animation-delay: 0.7s">2</text>
+
+                        <circle cx="50" cy="360" r="12" fill="#ec4899" stroke="#ffffff" stroke-width="2" class="gaze-fixation"></circle>
+                        <text x="50" y="363" fill="#ffffff" font-size="9" font-weight="bold" text-anchor="middle" class="gaze-fixation" style="animation-delay: 1.3s">3</text>
+
+                        <circle cx="450" cy="360" r="12" fill="#3b82f6" stroke="#ffffff" stroke-width="2" class="gaze-fixation"></circle>
+                        <text x="450" y="363" fill="#ffffff" font-size="9" font-weight="bold" text-anchor="middle" class="gaze-fixation" style="animation-delay: 1.9s">4</text>
+                      </g>
+                    </svg>
+                  </div>
+
+                  <!-- Grid BG -->
+                  <div class="absolute inset-0 grid-bg opacity-30 pointer-events-none"></div>
+
+                  <!-- Floating Hotspots with pulse waves -->
+                  <!-- Hotspot 1 -->
+                  <div class="absolute top-[20%] left-[15%] z-20 group">
+                    <div class="w-4 h-4 rounded-full bg-red-500 animate-ping absolute"></div>
+                    <button onclick="highlightSuggestion(0)" class="w-4 h-4 rounded-full bg-red-500 border border-white relative cursor-pointer shadow-lg shadow-red-500/50 flex items-center justify-center text-[8px] font-bold text-white">!</button>
+                    <div class="absolute top-6 left-0 bg-black/95 text-[10px] text-white p-2.5 rounded-xl border border-red-500/40 w-44 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none shadow-xl z-55">
+                      <div class="font-bold text-red-400">High: Contrast Issue</div>
+                      <p class="text-gray-400">Improve button color to match WCAG standards.</p>
+                    </div>
+                  </div>
+
+                  <!-- Hotspot 2 -->
+                  <div class="absolute top-[35%] left-[80%] z-20 group">
+                    <div class="w-4 h-4 rounded-full bg-yellow-500 animate-ping absolute"></div>
+                    <button onclick="highlightSuggestion(3)" class="w-4 h-4 rounded-full bg-yellow-500 border border-white relative cursor-pointer shadow-lg shadow-yellow-500/50 flex items-center justify-center text-[8px] font-bold text-white">!</button>
+                    <div class="absolute top-6 right-0 bg-black/95 text-[10px] text-white p-2.5 rounded-xl border border-yellow-500/40 w-44 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none shadow-xl z-55">
+                      <div class="font-bold text-yellow-400">Medium: Typography Scale</div>
+                      <p class="text-gray-400">Adjust line-height to fix readability.</p>
+                    </div>
+                  </div>
+
+                  <!-- Hotspot 3 -->
+                  <div class="absolute bottom-[25%] left-[55%] z-20 group">
+                    <div class="w-4 h-4 rounded-full bg-green-500 animate-ping absolute"></div>
+                    <button onclick="highlightSuggestion(1)" class="w-4 h-4 rounded-full bg-green-500 border border-white relative cursor-pointer shadow-lg shadow-green-500/50 flex items-center justify-center text-[8px] font-bold text-white">!</button>
+                    <div class="absolute top-6 left-0 bg-black/95 text-[10px] text-white p-2.5 rounded-xl border border-green-500/40 w-44 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none shadow-xl z-55">
+                      <div class="font-bold text-green-400">Low: Border Consistency</div>
+                      <p class="text-gray-400">Standardize border-radius to 12px.</p>
+                    </div>
+                  </div>
+
+                  <div class="relative z-10 space-y-8 w-full" id="mock-page-content">
+                    <!-- Header mockup -->
+                    <div class="flex items-center justify-between border-b border-white/5 pb-4">
+                      <span class="font-bold font-display text-lg text-white" id="mockup-brand-name">TechFlow AI</span>
+                      <div class="flex space-x-4 text-xs text-gray-500">
+                        <span>Products</span><span>Specs</span><span>Pricing</span>
+                      </div>
+                      <button class="px-3 py-1 bg-white/10 hover:bg-white/20 text-white rounded text-xs transition-all duration-300" id="mockup-btn-primary">Unlock Free trial</button>
+                    </div>
+                    <!-- Body mockup -->
+                    <div class="max-w-xl space-y-4">
+                      <h1 class="text-3xl sm:text-5xl font-display font-bold text-white tracking-tight leading-tight transition-all duration-300" id="mockup-heading">Next-Gen Analytics Engine for High Performance SaaS Platforms</h1>
+                      <p class="text-xs text-gray-400 transition-all duration-300" id="mockup-subtext">Compute pipeline workloads, secure authentication vaults, and trace visual gaze profiles automatically.</p>
+                    </div>
+                    <!-- Box sections -->
+                    <div class="grid grid-cols-3 gap-4 pt-4">
+                      <div class="p-4 bg-white/5 rounded-xl border border-white/5"><div class="w-8 h-8 rounded-lg bg-brand-500/10 mb-2"></div><div class="h-3 bg-white/20 w-3/4 rounded mb-1"></div><div class="h-2 bg-white/10 w-1/2 rounded"></div></div>
+                      <div class="p-4 bg-white/5 rounded-xl border border-white/5"><div class="w-8 h-8 rounded-lg bg-blue-500/10 mb-2"></div><div class="h-3 bg-white/20 w-2/3 rounded mb-1"></div><div class="h-2 bg-white/10 w-1/3 rounded"></div></div>
+                      <div class="p-4 bg-white/5 rounded-xl border border-white/5" id="mockup-card-3"><div class="w-8 h-8 rounded-lg bg-purple-500/10 mb-2"></div><div class="h-3 bg-white/20 w-4/5 rounded mb-1"></div><div class="h-2 bg-white/10 w-1/2 rounded"></div></div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Enhanced Live Viewport Layer with Responsive Resizer & Live AI Sandbox Simulator -->
+                <div id="live-iframe-layer" class="hidden flex flex-col h-[520px] w-full bg-slate-900 border-t border-white/10 overflow-hidden">
+                  <!-- Live Simulator Top Bar Controls -->
+                  <div class="flex items-center justify-between bg-slate-950 px-4 py-2 border-b border-white/5 flex-wrap gap-2 text-xs text-gray-400 no-print">
+                    <!-- Mode Switcher -->
+                    <div class="flex items-center space-x-1.5">
+                      <button id="btn-live-embed" class="px-2.5 py-1 rounded-lg font-semibold bg-white/10 text-white transition-all flex items-center space-x-1" onclick="setLiveMode('embed')">
+                        <i class="fa-solid fa-code text-[10px]"></i>
+                        <span>Direct Web Frame</span>
+                      </button>
+                      <button id="btn-live-sandbox" class="px-2.5 py-1 rounded-lg font-semibold text-gray-400 hover:text-white transition-all flex items-center space-x-1" onclick="setLiveMode('sandbox')">
+                        <i class="fa-solid fa-cubes text-[10px]"></i>
+                        <span>AI Interactive Sandbox</span>
+                      </button>
+                    </div>
+
+                    <!-- Responsive Device Switcher -->
+                    <div class="flex items-center space-x-1 bg-white/5 p-0.5 rounded-lg border border-white/10">
+                      <button onclick="setLiveViewport('desktop')" id="btn-vp-desktop" class="w-7 h-7 rounded flex items-center justify-center bg-white/10 text-white hover:text-white transition-colors" title="Desktop Mode (100%)">
+                        <i class="fa-solid fa-desktop text-xs"></i>
+                      </button>
+                      <button onclick="setLiveViewport('tablet')" id="btn-vp-tablet" class="w-7 h-7 rounded flex items-center justify-center text-gray-400 hover:text-white transition-colors" title="Tablet Mode (768px)">
+                        <i class="fa-solid fa-tablet-screen-button text-xs"></i>
+                      </button>
+                      <button onclick="setLiveViewport('mobile')" id="btn-vp-mobile" class="w-7 h-7 rounded flex items-center justify-center text-gray-400 hover:text-white transition-colors" title="Mobile Mode (375px)">
+                        <i class="fa-solid fa-mobile-screen-button text-xs"></i>
+                      </button>
+                    </div>
+
+                    <!-- Live Patch Control -->
+                    <div class="flex items-center space-x-2">
+                      <span class="text-[10px] uppercase font-bold text-gray-500">DesignIQ AI Patches</span>
+                      <button onclick="toggleLivePatches()" id="btn-toggle-patches" class="px-2.5 py-1 rounded-lg font-semibold text-xs border border-brand-500/20 bg-brand-500/10 text-brand-300 hover:bg-brand-500/20 transition-all flex items-center space-x-1">
+                        <i class="fa-solid fa-toggle-off text-sm mr-1 text-gray-500" id="icon-toggle-patches"></i>
+                        <span id="text-toggle-patches" class="text-gray-400">Patches: OFF</span>
+                      </button>
+                    </div>
+                  </div>
+
+                  <!-- Simulator Body viewport -->
+                  <div class="flex-1 w-full bg-slate-900 overflow-y-auto p-4 flex justify-center items-start">
+                    <div id="live-viewport-container" class="w-full h-full max-w-full transition-all duration-300 flex flex-col">
+                      
+                      <!-- View A: Raw External Iframe -->
+                      <div id="live-embed-container" class="w-full h-full relative">
+                        <iframe id="live-preview-iframe" class="w-full h-full border border-white/5 rounded-2xl bg-white shadow-xl" sandbox="allow-scripts allow-same-origin allow-popups"></iframe>
+                        
+                        <div class="absolute bottom-3 right-3 left-3 bg-slate-950/95 text-[11px] text-gray-300 p-3 rounded-xl border border-white/10 flex items-start space-x-2 shadow-2xl z-20">
+                          <i class="fa-solid fa-circle-info text-brand-400 text-sm mt-0.5 shrink-0"></i>
+                          <div class="space-y-0.5">
+                            <span class="font-bold text-white block">Embedding Warning</span>
+                            <span class="block text-gray-400 leading-relaxed">If this frame is blank, the target server blocks embedding (CSP/X-Frame-Options). Click <strong class="text-brand-300 cursor-pointer" onclick="setLiveMode('sandbox')">AI Interactive Sandbox</strong> above to run our fully functional client-side interactive simulator!</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <!-- View B: AI Interactive Sandbox Simulator -->
+                      <div id="live-sandbox-container" class="hidden w-full h-full rounded-2xl bg-slate-950 p-6 sm:p-10 border border-white/10 relative overflow-y-auto flex flex-col justify-between text-white">
+                        <!-- Grid Lines background -->
+                        <div class="absolute inset-0 grid-bg opacity-20 pointer-events-none"></div>
+
+                        <!-- Sandbox Heading / Interactive inspector panel -->
+                        <div class="relative z-10 flex items-center justify-between border-b border-white/5 pb-3 mb-6">
+                          <span class="font-display font-bold text-sm tracking-wide text-white uppercase flex items-center space-x-2">
+                            <i class="fa-solid fa-circle text-emerald-500 animate-pulse text-[8px]"></i>
+                            <span id="sandbox-domain-title">DEMO WORKSPACE</span>
+                          </span>
+                          <div id="sandbox-status-badge" class="px-2.5 py-0.5 rounded-full bg-yellow-500/10 border border-yellow-500/20 text-yellow-400 text-[10px] font-bold">
+                            Standard Unoptimized State
+                          </div>
+                        </div>
+
+                        <!-- Simulated Site Content -->
+                        <div class="relative z-10 space-y-6 flex-1 flex flex-col justify-center">
+                          <div class="space-y-4 max-w-xl">
+                            <!-- Custom styled elements that respond dynamically to patching toggle -->
+                            <div class="inline-block px-3 py-1 rounded bg-white/5 border border-white/5 text-[10px] font-mono tracking-wider text-gray-400" id="sandbox-category">
+                              LANDING SYSTEM NODE
+                            </div>
+                            <h1 class="text-3xl sm:text-4xl font-display font-bold text-white tracking-tight leading-tight transition-all duration-300" id="sandbox-headline">
+                              Elevated Modern Experience
+                            </h1>
+                            <p class="text-xs text-gray-400 leading-relaxed transition-all duration-300" id="sandbox-paragraph" style="line-height: 1.25;">
+                              Analyze, trace, and refine visual pathways, typography standardizations, and conversion metrics on automatically to secure consistent UI rendering across all responsive layout devices.
+                            </p>
+                          </div>
+
+                          <!-- CTA Button that will dynamically change contrast / padding / size on patch toggle -->
+                          <div class="pt-2">
+                            <button id="sandbox-cta-btn" class="px-4 py-2.5 bg-brand-500/10 text-brand-400 hover:bg-brand-500/20 text-xs font-bold transition-all duration-300 outline-none select-none relative shadow-none" style="border-radius: 2px;">
+                              Get Started Now
+                            </button>
+                          </div>
+
+                          <!-- Responsive stats cards -->
+                          <div class="grid grid-cols-2 gap-4 pt-6 mt-6 border-t border-white/5">
+                            <div class="p-3 bg-white/5 rounded-xl border border-white/5 hover:border-brand-500/20 transition-colors" id="sandbox-stat-card-1">
+                              <div class="text-[10px] text-gray-500 uppercase font-bold mb-1">Gaze Metric</div>
+                              <div class="text-base font-bold text-white font-mono" id="sandbox-stat-1">74% Attention</div>
+                            </div>
+                            <div class="p-3 bg-white/5 rounded-xl border border-white/5 hover:border-brand-500/20 transition-colors" id="sandbox-stat-card-2">
+                              <div class="text-[10px] text-gray-500 uppercase font-bold mb-1">Text Readability</div>
+                              <div class="text-base font-bold text-white font-mono" id="sandbox-stat-2">Low contrast warning</div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <!-- Live Inspector Toast Panel on Hover -->
+                        <div id="sandbox-inspector-toast" class="mt-4 bg-slate-900/90 backdrop-blur-md border border-white/10 p-3 rounded-xl flex items-center space-x-3 text-[11px] text-gray-300 relative z-10 transition-all">
+                          <div class="w-2.5 h-2.5 rounded-full bg-brand-500 animate-ping"></div>
+                          <i class="fa-solid fa-magnifying-glass text-brand-400"></i>
+                          <p id="sandbox-inspector-text">Hover or click elements above to inspect style recommendations.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Tech Stack & Metadata Strip under Mockup -->
+                <div class="bg-slate-950 p-4 border-t border-white/5 flex items-center justify-between flex-wrap gap-4 text-xs">
+                  <div class="flex items-center space-x-2 text-gray-400">
+                    <i class="fa-solid fa-microchip text-brand-400"></i>
+                    <span class="font-semibold">Technology Stack Detected:</span>
+                  </div>
+                  <div class="flex items-center gap-2 flex-wrap" id="tech-badges-container">
+                    <span class="px-2.5 py-1 rounded bg-brand-500/10 border border-brand-500/20 text-brand-300 font-bold text-[9px] uppercase font-mono tracking-wider">React</span>
+                    <span class="px-2.5 py-1 rounded bg-blue-500/10 border border-blue-500/20 text-blue-300 font-bold text-[9px] uppercase font-mono tracking-wider">Next.js</span>
+                    <span class="px-2.5 py-1 rounded bg-purple-500/10 border border-purple-500/20 text-purple-300 font-bold text-[9px] uppercase font-mono tracking-wider">TailwindCSS</span>
+                    <span class="px-2.5 py-1 rounded bg-fuchsia-500/10 border border-fuchsia-500/20 text-fuchsia-300 font-bold text-[9px] uppercase font-mono tracking-wider">Vercel</span>
+                    <span class="px-2.5 py-1 rounded bg-yellow-500/10 border border-yellow-500/20 text-yellow-300 font-bold text-[9px] uppercase font-mono tracking-wider">Cloudflare</span>
+                  </div>
+                </div>
+
               </div>
+            </div>
+          </div>
+
+          <!-- CORE WEB VITALS METRICS GRID -->
+          <div class="space-y-4">
+            <h3 class="font-display font-semibold text-base text-white flex items-center space-x-2">
+              <i class="fa-solid fa-bolt text-brand-400"></i>
+              <span>Core Web Vitals & Loading Metrics</span>
+            </h3>
+            <div class="grid grid-cols-2 md:grid-cols-6 gap-4">
+              <!-- LCP -->
+              <div class="glass-card p-4 border border-white/5 bg-slate-950/20 text-center space-y-1 relative group">
+                <div class="absolute top-2 right-2 w-1.5 h-1.5 rounded-full bg-emerald-500"></div>
+                <div class="text-[9px] text-gray-500 font-bold uppercase tracking-wider font-mono">LCP</div>
+                <div class="text-base font-bold text-emerald-400 font-mono" id="metric-lcp">1.2s</div>
+                <div class="text-[9px] text-gray-500 leading-none">Largest Paint</div>
+              </div>
+              <!-- CLS -->
+              <div class="glass-card p-4 border border-white/5 bg-slate-950/20 text-center space-y-1 relative group">
+                <div class="absolute top-2 right-2 w-1.5 h-1.5 rounded-full bg-emerald-500"></div>
+                <div class="text-[9px] text-gray-500 font-bold uppercase tracking-wider font-mono">CLS</div>
+                <div class="text-base font-bold text-emerald-400 font-mono" id="metric-cls">0.015</div>
+                <div class="text-[9px] text-gray-500 leading-none">Layout Shift</div>
+              </div>
+              <!-- INP -->
+              <div class="glass-card p-4 border border-white/5 bg-slate-950/20 text-center space-y-1 relative group">
+                <div class="absolute top-2 right-2 w-1.5 h-1.5 rounded-full bg-emerald-500"></div>
+                <div class="text-[9px] text-gray-500 font-bold uppercase tracking-wider font-mono">INP</div>
+                <div class="text-base font-bold text-emerald-400 font-mono" id="metric-inp">38ms</div>
+                <div class="text-[9px] text-gray-500 leading-none">Interaction</div>
+              </div>
+              <!-- FCP -->
+              <div class="glass-card p-4 border border-white/5 bg-slate-950/20 text-center space-y-1 relative group">
+                <div class="absolute top-2 right-2 w-1.5 h-1.5 rounded-full bg-emerald-500"></div>
+                <div class="text-[9px] text-gray-500 font-bold uppercase tracking-wider font-mono">FCP</div>
+                <div class="text-base font-bold text-emerald-400 font-mono" id="metric-fcp">0.75s</div>
+                <div class="text-[9px] text-gray-500 leading-none">First Paint</div>
+              </div>
+              <!-- TTFB -->
+              <div class="glass-card p-4 border border-white/5 bg-slate-950/20 text-center space-y-1 relative group">
+                <div class="absolute top-2 right-2 w-1.5 h-1.5 rounded-full bg-emerald-500"></div>
+                <div class="text-[9px] text-gray-500 font-bold uppercase tracking-wider font-mono">TTFB</div>
+                <div class="text-base font-bold text-emerald-400 font-mono" id="metric-ttfb">84ms</div>
+                <div class="text-[9px] text-gray-500 leading-none">First Byte</div>
+              </div>
+              <!-- Speed Index -->
+              <div class="glass-card p-4 border border-white/5 bg-slate-950/20 text-center space-y-1 relative group">
+                <div class="absolute top-2 right-2 w-1.5 h-1.5 rounded-full bg-emerald-500"></div>
+                <div class="text-[9px] text-gray-500 font-bold uppercase tracking-wider font-mono">Speed Index</div>
+                <div class="text-base font-bold text-emerald-400 font-mono" id="metric-speed">1.1s</div>
+                <div class="text-[9px] text-gray-500 leading-none">Visual Load</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 19 CORE AUDIT DIMENSIONS BENTO GRID -->
+          <div class="space-y-4">
+            <h3 class="font-display font-semibold text-base text-white flex items-center space-x-2">
+              <i class="fa-solid fa-cubes text-brand-400"></i>
+              <span>Design Quality Dimensions (19 Modules Checked)</span>
+            </h3>
+            
+            <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4" id="dashboard-dimensions-grid">
+              <!-- Dynamically populated via JavaScript with count-up animations and color coded rings -->
             </div>
           </div>
 
@@ -1538,9 +1953,7 @@
                 </p>
               </div>
             </div>
-          </div>
-
-        </div>
+          </div>>
 
         <!-- Tab 2: Detail Metrics -->
         <div id="tab-metrics" class="tab-content hidden space-y-8 animate-fade-in-up">
@@ -1608,15 +2021,243 @@
             <!-- Filled via JavaScript -->
           </div>
         </div>
+        <!-- Tab 3.5: Redesign Roadmap -->
+        <div id="tab-roadmap" class="tab-content hidden space-y-8 animate-fade-in-up">
+          
+          <!-- Header -->
+          <div class="glass-card p-8 rounded-3xl border border-white/5 relative overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-tr from-brand-600/5 to-blue-500/5 pointer-events-none"></div>
+            <div class="flex items-center space-x-4">
+              <div class="w-12 h-12 rounded-2xl bg-brand-500/10 flex items-center justify-center text-brand-400 shrink-0">
+                <i class="fa-solid fa-route text-xl"></i>
+              </div>
+              <div>
+                <h3 class="font-display font-bold text-xl text-white">Redesign Roadmap & ROI Forecast</h3>
+                <p class="text-xs text-gray-400 mt-1">Structured implementation plan ordered by impact-to-effort ratio, plus a live revenue impact calculator.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick Wins vs Long-Term Grid -->
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            
+            <!-- Quick Wins Column -->
+            <div class="space-y-4">
+              <div class="flex items-center space-x-2">
+                <div class="w-2 h-2 rounded-full bg-emerald-500"></div>
+                <h4 class="font-display font-semibold text-base text-white">Quick Wins</h4>
+                <span class="px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 text-[9px] font-bold font-mono uppercase tracking-wider border border-emerald-500/20">0–2 Weeks</span>
+              </div>
+              
+              <div class="space-y-3" id="roadmap-quick-wins">
+                <!-- Step 1 -->
+                <div class="glass-card p-5 rounded-2xl border border-white/5 flex items-start space-x-4 hover:border-emerald-500/20 transition-all duration-300 group">
+                  <div class="w-8 h-8 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center shrink-0 font-bold text-sm font-mono group-hover:bg-emerald-500/20 transition-colors">1</div>
+                  <div class="space-y-1 min-w-0">
+                    <div class="text-sm font-semibold text-white">Fix Primary CTA Contrast Ratios</div>
+                    <div class="text-xs text-gray-400 leading-relaxed">Apply WCAG AAA color contrast patches to all CTA buttons. Immediate accessibility win with zero code refactor required.</div>
+                    <div class="flex items-center gap-2 pt-1 flex-wrap">
+                      <span class="px-2 py-0.5 rounded text-[9px] font-mono bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Easy</span>
+                      <span class="px-2 py-0.5 rounded text-[9px] font-mono bg-white/5 text-gray-400 border border-white/5">~2 hrs</span>
+                      <span class="px-2 py-0.5 rounded text-[9px] font-mono bg-brand-500/10 text-brand-300 border border-brand-500/20">+12 pts</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="glass-card p-5 rounded-2xl border border-white/5 flex items-start space-x-4 hover:border-emerald-500/20 transition-all duration-300 group">
+                  <div class="w-8 h-8 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center shrink-0 font-bold text-sm font-mono group-hover:bg-emerald-500/20 transition-colors">2</div>
+                  <div class="space-y-1 min-w-0">
+                    <div class="text-sm font-semibold text-white">Standardize Border Radius System</div>
+                    <div class="text-xs text-gray-400 leading-relaxed">Unify all component corner curves with a single CSS variable. Reduces visual noise immediately across all cards and buttons.</div>
+                    <div class="flex items-center gap-2 pt-1 flex-wrap">
+                      <span class="px-2 py-0.5 rounded text-[9px] font-mono bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Easy</span>
+                      <span class="px-2 py-0.5 rounded text-[9px] font-mono bg-white/5 text-gray-400 border border-white/5">~1 hr</span>
+                      <span class="px-2 py-0.5 rounded text-[9px] font-mono bg-brand-500/10 text-brand-300 border border-brand-500/20">+6 pts</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="glass-card p-5 rounded-2xl border border-white/5 flex items-start space-x-4 hover:border-emerald-500/20 transition-all duration-300 group">
+                  <div class="w-8 h-8 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center shrink-0 font-bold text-sm font-mono group-hover:bg-emerald-500/20 transition-colors">3</div>
+                  <div class="space-y-1 min-w-0">
+                    <div class="text-sm font-semibold text-white">Fix Line-Height & Paragraph Tracking</div>
+                    <div class="text-xs text-gray-400 leading-relaxed">Set body line-height to 1.6× and letter-spacing to 0.01em globally. Dramatically improves Flesch reading score.</div>
+                    <div class="flex items-center gap-2 pt-1 flex-wrap">
+                      <span class="px-2 py-0.5 rounded text-[9px] font-mono bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Easy</span>
+                      <span class="px-2 py-0.5 rounded text-[9px] font-mono bg-white/5 text-gray-400 border border-white/5">~30 min</span>
+                      <span class="px-2 py-0.5 rounded text-[9px] font-mono bg-brand-500/10 text-brand-300 border border-brand-500/20">+8 pts</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="glass-card p-5 rounded-2xl border border-white/5 flex items-start space-x-4 hover:border-emerald-500/20 transition-all duration-300 group">
+                  <div class="w-8 h-8 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center shrink-0 font-bold text-sm font-mono group-hover:bg-emerald-500/20 transition-colors">4</div>
+                  <div class="space-y-1 min-w-0">
+                    <div class="text-sm font-semibold text-white">Add Alt Text to All Images</div>
+                    <div class="text-xs text-gray-400 leading-relaxed">Insert descriptive alt attributes on all content images. Required for WCAG 2.1 AA and immediately boosts SEO indexation.</div>
+                    <div class="flex items-center gap-2 pt-1 flex-wrap">
+                      <span class="px-2 py-0.5 rounded text-[9px] font-mono bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Easy</span>
+                      <span class="px-2 py-0.5 rounded text-[9px] font-mono bg-white/5 text-gray-400 border border-white/5">~1 hr</span>
+                      <span class="px-2 py-0.5 rounded text-[9px] font-mono bg-brand-500/10 text-brand-300 border border-brand-500/20">+9 pts</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Long-Term Improvements Column -->
+            <div class="space-y-4">
+              <div class="flex items-center space-x-2">
+                <div class="w-2 h-2 rounded-full bg-brand-500"></div>
+                <h4 class="font-display font-semibold text-base text-white">Long-Term Improvements</h4>
+                <span class="px-2 py-0.5 rounded-full bg-brand-500/10 text-brand-400 text-[9px] font-bold font-mono uppercase tracking-wider border border-brand-500/20">1–3 Months</span>
+              </div>
+              
+              <div class="space-y-3">
+                <!-- LT Step 1 -->
+                <div class="glass-card p-5 rounded-2xl border border-white/5 flex items-start space-x-4 hover:border-brand-500/20 transition-all duration-300 group">
+                  <div class="w-8 h-8 rounded-xl bg-brand-500/10 text-brand-400 flex items-center justify-center shrink-0 font-bold text-sm font-mono group-hover:bg-brand-500/20 transition-colors">A</div>
+                  <div class="space-y-1 min-w-0">
+                    <div class="text-sm font-semibold text-white">Implement Full Design Token System</div>
+                    <div class="text-xs text-gray-400 leading-relaxed">Migrate to CSS custom properties for all colors, spacing and typography. Unlocks consistent theming, dark mode support, and rapid iteration.</div>
+                    <div class="flex items-center gap-2 pt-1 flex-wrap">
+                      <span class="px-2 py-0.5 rounded text-[9px] font-mono bg-amber-500/10 text-amber-400 border border-amber-500/20">Medium</span>
+                      <span class="px-2 py-0.5 rounded text-[9px] font-mono bg-white/5 text-gray-400 border border-white/5">~2 weeks</span>
+                      <span class="px-2 py-0.5 rounded text-[9px] font-mono bg-brand-500/10 text-brand-300 border border-brand-500/20">+18 pts</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- LT Step 2 -->
+                <div class="glass-card p-5 rounded-2xl border border-white/5 flex items-start space-x-4 hover:border-brand-500/20 transition-all duration-300 group">
+                  <div class="w-8 h-8 rounded-xl bg-brand-500/10 text-brand-400 flex items-center justify-center shrink-0 font-bold text-sm font-mono group-hover:bg-brand-500/20 transition-colors">B</div>
+                  <div class="space-y-1 min-w-0">
+                    <div class="text-sm font-semibold text-white">Rebuild Layout with Fluid Grid</div>
+                    <div class="text-xs text-gray-400 leading-relaxed">Replace fixed-width containers with clamp()-based fluid grids. Eliminates horizontal scroll on mobile and tablet breakpoints.</div>
+                    <div class="flex items-center gap-2 pt-1 flex-wrap">
+                      <span class="px-2 py-0.5 rounded text-[9px] font-mono bg-amber-500/10 text-amber-400 border border-amber-500/20">Medium</span>
+                      <span class="px-2 py-0.5 rounded text-[9px] font-mono bg-white/5 text-gray-400 border border-white/5">~3 weeks</span>
+                      <span class="px-2 py-0.5 rounded text-[9px] font-mono bg-brand-500/10 text-brand-300 border border-brand-500/20">+22 pts</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- LT Step 3 -->
+                <div class="glass-card p-5 rounded-2xl border border-white/5 flex items-start space-x-4 hover:border-brand-500/20 transition-all duration-300 group">
+                  <div class="w-8 h-8 rounded-xl bg-brand-500/10 text-brand-400 flex items-center justify-center shrink-0 font-bold text-sm font-mono group-hover:bg-brand-500/20 transition-colors">C</div>
+                  <div class="space-y-1 min-w-0">
+                    <div class="text-sm font-semibold text-white">Optimize Core Web Vitals (LCP + CLS)</div>
+                    <div class="text-xs text-gray-400 leading-relaxed">Convert hero images to WebP with explicit dimensions, lazy-load below-fold content, and preconnect to critical third-party origins.</div>
+                    <div class="flex items-center gap-2 pt-1 flex-wrap">
+                      <span class="px-2 py-0.5 rounded text-[9px] font-mono bg-rose-500/10 text-rose-400 border border-rose-500/20">Hard</span>
+                      <span class="px-2 py-0.5 rounded text-[9px] font-mono bg-white/5 text-gray-400 border border-white/5">~1 month</span>
+                      <span class="px-2 py-0.5 rounded text-[9px] font-mono bg-brand-500/10 text-brand-300 border border-brand-500/20">+30 pts</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- LT Step 4 -->
+                <div class="glass-card p-5 rounded-2xl border border-white/5 flex items-start space-x-4 hover:border-brand-500/20 transition-all duration-300 group">
+                  <div class="w-8 h-8 rounded-xl bg-brand-500/10 text-brand-400 flex items-center justify-center shrink-0 font-bold text-sm font-mono group-hover:bg-brand-500/20 transition-colors">D</div>
+                  <div class="space-y-1 min-w-0">
+                    <div class="text-sm font-semibold text-white">Deploy Premium Animation System</div>
+                    <div class="text-xs text-gray-400 leading-relaxed">Implement scroll-triggered reveal animations, hover micro-interactions, and page transition fades to match modern SaaS standards.</div>
+                    <div class="flex items-center gap-2 pt-1 flex-wrap">
+                      <span class="px-2 py-0.5 rounded text-[9px] font-mono bg-amber-500/10 text-amber-400 border border-amber-500/20">Medium</span>
+                      <span class="px-2 py-0.5 rounded text-[9px] font-mono bg-white/5 text-gray-400 border border-white/5">~2 weeks</span>
+                      <span class="px-2 py-0.5 rounded text-[9px] font-mono bg-brand-500/10 text-brand-300 border border-brand-500/20">+15 pts</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Revenue Impact Calculator -->
+          <div class="glass-card p-8 rounded-3xl border border-white/5 space-y-6 relative overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-br from-emerald-600/5 to-brand-500/5 pointer-events-none"></div>
+            
+            <div class="flex items-center space-x-3">
+              <div class="w-10 h-10 rounded-2xl bg-emerald-500/10 flex items-center justify-center text-emerald-400 shrink-0">
+                <i class="fa-solid fa-sack-dollar text-lg"></i>
+              </div>
+              <div>
+                <h4 class="font-display font-bold text-lg text-white">Estimated Revenue Impact Calculator</h4>
+                <p class="text-xs text-gray-400">Based on DesignIQ UX improvement scores — see the financial upside of applying all recommended fixes.</p>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+              <div class="space-y-2">
+                <label class="text-xs font-semibold text-gray-400 uppercase tracking-wider font-mono block">Monthly Visitors</label>
+                <input type="number" id="roi-visitors" value="50000" min="1000" step="1000" oninput="calcROI()" class="w-full bg-slate-950/60 border border-white/10 rounded-xl px-4 py-3 text-sm text-white font-mono outline-none focus:border-brand-500 transition-colors">
+              </div>
+              <div class="space-y-2">
+                <label class="text-xs font-semibold text-gray-400 uppercase tracking-wider font-mono block">Avg. Order Value ($)</label>
+                <input type="number" id="roi-aov" value="120" min="1" step="5" oninput="calcROI()" class="w-full bg-slate-950/60 border border-white/10 rounded-xl px-4 py-3 text-sm text-white font-mono outline-none focus:border-brand-500 transition-colors">
+              </div>
+              <div class="space-y-2">
+                <label class="text-xs font-semibold text-gray-400 uppercase tracking-wider font-mono block">Current Conv. Rate (%)</label>
+                <input type="number" id="roi-conv" value="2.4" min="0.1" max="100" step="0.1" oninput="calcROI()" class="w-full bg-slate-950/60 border border-white/10 rounded-xl px-4 py-3 text-sm text-white font-mono outline-none focus:border-brand-500 transition-colors">
+              </div>
+            </div>
+
+            <!-- Results Cards -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+              <div class="bg-slate-950/60 p-5 rounded-2xl border border-white/5 text-center space-y-1">
+                <div class="text-[10px] text-gray-500 font-mono uppercase tracking-wider">Current Revenue/mo</div>
+                <div class="text-xl font-bold text-white font-mono" id="roi-current">$144,000</div>
+              </div>
+              <div class="bg-emerald-950/20 p-5 rounded-2xl border border-emerald-500/20 text-center space-y-1">
+                <div class="text-[10px] text-emerald-500 font-mono uppercase tracking-wider">Projected Revenue/mo</div>
+                <div class="text-xl font-bold text-emerald-400 font-mono" id="roi-projected">$165,312</div>
+              </div>
+              <div class="bg-brand-950/20 p-5 rounded-2xl border border-brand-500/20 text-center space-y-1">
+                <div class="text-[10px] text-brand-400 font-mono uppercase tracking-wider">Monthly Uplift</div>
+                <div class="text-xl font-bold text-brand-300 font-mono" id="roi-uplift">+$21,312</div>
+              </div>
+              <div class="bg-blue-950/20 p-5 rounded-2xl border border-blue-500/20 text-center space-y-1">
+                <div class="text-[10px] text-blue-400 font-mono uppercase tracking-wider">Annual ROI</div>
+                <div class="text-xl font-bold text-blue-300 font-mono" id="roi-annual">+$255,744</div>
+              </div>
+            </div>
+
+            <div class="text-[10px] text-gray-600 font-mono">* Projection based on DesignIQ estimated +14.8% average conversion lift from full audit fix implementation. Actual results vary.</div>
+          </div>
+        </div>
 
         <!-- Tab 4: AI Redesign Slider -->
+
         <div id="tab-redesign" class="tab-content hidden space-y-8 animate-fade-in-up">
           <div class="text-center max-w-2xl mx-auto mb-6">
             <h3 class="font-display font-semibold text-2xl text-white">Interactive Redesign Comparison</h3>
             <p class="text-sm text-gray-400">Drag the slider left and right to inspect the before and after states computed by the DesignIQ generative model.</p>
           </div>
 
+          <!-- Style Preset Selector -->
+          <div class="flex flex-wrap justify-center gap-3 -mt-2 mb-2">
+            <button onclick="applyStylePreset('glassmorphism')" id="preset-glassmorphism" class="style-preset-btn px-4 py-2 rounded-xl text-xs font-semibold border transition-all duration-200 bg-brand-500/10 text-brand-300 border-brand-500/30">
+              <i class="fa-solid fa-sparkles mr-1.5"></i>Glassmorphism
+            </button>
+            <button onclick="applyStylePreset('neobrutalism')" id="preset-neobrutalism" class="style-preset-btn px-4 py-2 rounded-xl text-xs font-semibold border transition-all duration-200 text-gray-400 border-white/10 hover:text-white hover:border-white/20">
+              <i class="fa-solid fa-shapes mr-1.5"></i>Neobrutalism
+            </button>
+            <button onclick="applyStylePreset('minimal')" id="preset-minimal" class="style-preset-btn px-4 py-2 rounded-xl text-xs font-semibold border transition-all duration-200 text-gray-400 border-white/10 hover:text-white hover:border-white/20">
+              <i class="fa-solid fa-circle-half-stroke mr-1.5"></i>Minimal
+            </button>
+            <button onclick="applyStylePreset('corporate')" id="preset-corporate" class="style-preset-btn px-4 py-2 rounded-xl text-xs font-semibold border transition-all duration-200 text-gray-400 border-white/10 hover:text-white hover:border-white/20">
+              <i class="fa-solid fa-building mr-1.5"></i>Corporate
+            </button>
+            <button onclick="applyStylePreset('neon')" id="preset-neon" class="style-preset-btn px-4 py-2 rounded-xl text-xs font-semibold border transition-all duration-200 text-gray-400 border-white/10 hover:text-white hover:border-white/20">
+              <i class="fa-solid fa-bolt mr-1.5"></i>Neon Cyber
+            </button>
+          </div>
+
           <!-- Dynamic Before/After Split Viewer -->
+
           <div class="slider-container rounded-3xl border border-white/10 aspect-[16/9] shadow-2xl relative w-full h-[450px]" id="split-slider-widget">
             <!-- Before screen layout -->
             <div class="absolute inset-0 bg-slate-900 flex flex-col justify-between p-8 sm:p-12 text-left w-full h-full" id="before-frame">
@@ -1646,13 +2287,13 @@
                   <span class="font-bold text-brand-400 uppercase tracking-widest text-xs">DesignIQ AI Redesign (After)</span>
                   <span class="text-xs text-brand-300 font-mono" id="after-frame-url">https://yourwebsite.com</span>
                 </div>
-                <div class="space-y-4 max-w-lg">
+                <div class="space-y-4 max-w-lg after-inner-panel">
                   <span class="px-2 py-0.5 rounded bg-brand-500/20 text-brand-400 font-mono text-[9px] uppercase font-bold tracking-wider">Glassmorphism Redesign</span>
                   <h2 class="text-4xl font-display font-bold text-white tracking-tight drop-shadow-[0_0_10px_rgba(139,92,246,0.3)]" id="after-frame-heading">Elevated Visual Experience</h2>
                   <p class="text-xs text-gray-400 leading-relaxed" id="after-frame-desc">Translucent layouts styled with high-contrast glassmorphism, dynamic glowing gradients, beautiful custom radial background meshes, and micro-interactions.</p>
                   <div class="flex space-x-3">
-                    <button class="px-5 py-2.5 bg-gradient-to-r from-brand-600 to-blue-600 hover:from-brand-500 hover:to-blue-500 text-white rounded-xl text-xs font-semibold shadow-lg shadow-brand-500/20">Start Free Audit</button>
-                    <button class="px-5 py-2.5 glass rounded-xl text-white text-xs font-semibold border border-white/10 hover:bg-white/5">Learn More</button>
+                    <button id="after-cta-primary" class="px-5 py-2.5 bg-gradient-to-r from-brand-600 to-blue-600 hover:from-brand-500 hover:to-blue-500 text-white rounded-xl text-xs font-semibold shadow-lg shadow-brand-500/20">Start Free Audit</button>
+                    <button id="after-cta-secondary" class="px-5 py-2.5 glass rounded-xl text-white text-xs font-semibold border border-white/10 hover:bg-white/5">Learn More</button>
                   </div>
                 </div>
                 <div class="grid grid-cols-3 gap-4 pt-4 border-t border-white/5">
@@ -1662,6 +2303,7 @@
                 </div>
               </div>
             </div>
+
 
             <!-- Slide Divider Pin -->
             <div class="absolute top-0 bottom-0 w-1 bg-gradient-to-b from-brand-500 to-blue-500 cursor-ew-resize z-30" id="slider-handle" style="left: 50%;">
@@ -1812,6 +2454,8 @@
     window.addEventListener('mousemove', (e) => {
       mouse.x = e.clientX;
       mouse.y = e.clientY;
+      document.documentElement.style.setProperty('--mouse-x', `${e.clientX}px`);
+      document.documentElement.style.setProperty('--mouse-y', `${e.clientY}px`);
     });
 
     window.addEventListener('mouseleave', () => {
@@ -2427,10 +3071,14 @@
         s.id = idx;
         
         // Randomize severity and effect slightly matching the selected state
-        const severities = ["High", "Medium", "Low"];
-        s.severity = s.severity || severities[Math.floor(rnd() * 3)];
-        s.scoreEffect = s.severity === "High" ? Math.floor(rnd() * 4) + 9 : s.severity === "Medium" ? Math.floor(rnd() * 3) + 5 : Math.floor(rnd() * 2) + 2;
+        const severities = ["Critical", "High", "Medium", "Low"];
+        s.severity = s.severity || severities[Math.floor(rnd() * 4)];
+        s.scoreEffect = s.severity === "Critical" ? Math.floor(rnd() * 4) + 12 : s.severity === "High" ? Math.floor(rnd() * 4) + 8 : s.severity === "Medium" ? Math.floor(rnd() * 3) + 4 : Math.floor(rnd() * 2) + 2;
         s.expected = `+${s.scoreEffect} ${s.category}`;
+
+        // Difficulty & Time to Fix mapping
+        s.difficulty = s.severity === "Critical" ? "Hard" : s.severity === "High" ? "Medium" : "Easy";
+        s.timeToFix = s.severity === "Critical" ? "30 mins" : s.severity === "High" ? "15 mins" : s.severity === "Medium" ? "5 mins" : "2 mins";
         
         // Personalize text with domain name
         s.title = s.title.replace("primary button", `${capitalizedDomain}'s primary button`);
@@ -2454,6 +3102,79 @@
       } else {
         synthesisText = `<strong>${hostname}</strong> displays exceptional design hygiene! Minor optimizations in spacing and micro-typography can push this into the top tier. Apply the recommended visual CSS patches below to perfect your metrics.`;
       }
+
+      // Generate seed values for all 19 dimensions
+      const dimHierarchy = Math.floor(rnd() * 15) + 78;
+      const dimForms = Math.floor(rnd() * 18) + 75;
+      const dimButtons = Math.floor(rnd() * 15) + 80;
+      const dimCards = Math.floor(rnd() * 15) + 80;
+      const dimPalette = Math.floor(rnd() * 15) + 78;
+      const dimAnim = Math.floor(rnd() * 15) + 81;
+      const dimCode = Math.floor(rnd() * 15) + 82;
+      const dimBest = Math.floor(rnd() * 12) + 85;
+      const dimSecurity = Math.floor(rnd() * 10) + 90;
+
+      // Tech detection list based on domain seed
+      const allTechs = ["React", "Next.js", "TailwindCSS", "Vercel", "Cloudflare", "TypeScript", "Node.js", "Webpack", "Google Analytics", "Sentry"];
+      // Choose 3 to 6 technologies
+      const techCount = Math.floor(rnd() * 4) + 3;
+      const techStack = [];
+      const usedTechIdx = new Set();
+      while (techStack.length < techCount) {
+        const idx = Math.floor(rnd() * allTechs.length);
+        if (!usedTechIdx.has(idx)) {
+          techStack.push(allTechs[idx]);
+          usedTechIdx.add(idx);
+        }
+      }
+
+      // Strengths & Weaknesses
+      const strengthsPool = [
+        "Consistent typographic scales across standard layouts.",
+        "Excellent spatial harmony and modern white-space margins.",
+        "Highly-structured header element flow and clear anchor pathways.",
+        "Optimized SVG inline icons reducing rendering payloads.",
+        "Secure cookie headers and standard HTTPS redirection setup.",
+        "Well-curated primary and secondary color palette accents."
+      ];
+      const weaknessesPool = [
+        "Insufficient contrast ratios detected on primary CTA blocks.",
+        "Layout width boundaries are fixed, breaking mobile fluidity.",
+        "Unoptimized hero assets degrading Largest Contentful Paint.",
+        "Missing alternate descriptive tags on layout content images.",
+        "Slow interactive input response due to excessive main thread scripting.",
+        "Lack of standardized corner curves across button elements."
+      ];
+
+      const strengths = [];
+      const weaknesses = [];
+      const usedStr = new Set();
+      while (strengths.length < 2) {
+        const s = strengthsPool[Math.floor(rnd() * strengthsPool.length)];
+        if (!usedStr.has(s)) { strengths.push(s); usedStr.add(s); }
+      }
+      const usedWeak = new Set();
+      while (weaknesses.length < 2) {
+        const w = weaknessesPool[Math.floor(rnd() * weaknessesPool.length)];
+        if (!usedWeak.has(w)) { weaknesses.push(w); usedWeak.add(w); }
+      }
+
+      const priorityFixes = [
+        "Standardize primary CTA contrast ratio to WCAG AAA minimums.",
+        "Implement fluid container grids to resolve mobile line wrap issues.",
+        "Compress hero banner asset into Next-gen WebP formatting.",
+        "Add alternate description properties to all promotional images.",
+        "Reduce bundle overhead by lazy loading dependencies."
+      ];
+      const topPriorityFix = priorityFixes[Math.floor(rnd() * priorityFixes.length)];
+
+      // Core Web Vitals
+      const lcp = (1.0 + rnd() * 2.2).toFixed(2) + "s";
+      const cls = (rnd() * 0.15).toFixed(3);
+      const inp = Math.floor(30 + rnd() * 250) + "ms";
+      const fcp = (0.5 + rnd() * 1.5).toFixed(2) + "s";
+      const ttfb = Math.floor(40 + rnd() * 200) + "ms";
+      const speedIndex = (0.8 + rnd() * 2.0).toFixed(2) + "s";
       
       return {
         url: url,
@@ -2470,14 +3191,35 @@
           space: spaceScore,
           brand: brandScore,
           mobile: mobileScore,
-          nav: navScore
+          nav: navScore,
+          hierarchy: dimHierarchy,
+          forms: dimForms,
+          buttons: dimButtons,
+          cards: dimCards,
+          palette: dimPalette,
+          anim: dimAnim,
+          code: dimCode,
+          best: dimBest,
+          security: dimSecurity
         },
         competitors: {
           a: Math.min(100, Math.max(40, compA)),
           b: Math.min(100, Math.max(40, compB))
         },
         suggestions: personalizedSuggestions,
-        synthesis: synthesisText
+        synthesis: synthesisText,
+        strengths: strengths,
+        weaknesses: weaknesses,
+        topPriorityFix: topPriorityFix,
+        techStack: techStack,
+        vitals: {
+          lcp,
+          cls,
+          inp,
+          fcp,
+          ttfb,
+          speed: speedIndex
+        }
       };
     }
 
@@ -2582,6 +3324,44 @@
         if (embedContainer) embedContainer.classList.remove('hidden');
         if (sandboxContainer) sandboxContainer.classList.add('hidden');
       }
+    };
+
+    window.setWorkspaceDevice = function(mode) {
+      const wrapper = document.getElementById('workspace-viewport-wrapper');
+      if (!wrapper) return;
+      
+      const btnDesktop = document.getElementById('btn-vp-ws-desktop');
+      const btnTablet = document.getElementById('btn-vp-ws-tablet');
+      const btnMobile = document.getElementById('btn-vp-ws-mobile');
+      
+      [btnDesktop, btnTablet, btnMobile].forEach(btn => {
+        if (btn) {
+          btn.classList.remove('bg-white/10', 'text-white');
+          btn.classList.add('text-gray-400');
+        }
+      });
+      
+      if (mode === 'desktop') {
+        wrapper.style.maxWidth = '100%';
+        if (btnDesktop) {
+          btnDesktop.classList.add('bg-white/10', 'text-white');
+          btnDesktop.classList.remove('text-gray-400');
+        }
+      } else if (mode === 'tablet') {
+        wrapper.style.maxWidth = '768px';
+        if (btnTablet) {
+          btnTablet.classList.add('bg-white/10', 'text-white');
+          btnTablet.classList.remove('text-gray-400');
+        }
+      } else if (mode === 'mobile') {
+        wrapper.style.maxWidth = '375px';
+        if (btnMobile) {
+          btnMobile.classList.add('bg-white/10', 'text-white');
+          btnMobile.classList.remove('text-gray-400');
+        }
+      }
+      
+      setTimeout(resizeAllCharts, 300);
     };
 
     window.setLiveViewport = function(device) {
@@ -3009,7 +3789,7 @@
         document.getElementById('bar-vitals').style.width = "0%";
         
         // Update synthesis box html
-        const synthesisBox = document.querySelector('#tab-overview .glass-card p');
+        const synthesisBox = document.getElementById('dashboard-synthesis-text');
         if (synthesisBox) {
           synthesisBox.innerHTML = window.currentReport.synthesis;
         }
@@ -3018,6 +3798,156 @@
         const badgeCount = document.getElementById('badge-suggestions-count');
         if (badgeCount) {
           badgeCount.textContent = window.currentReport.suggestions.length;
+        }
+
+        // Update AI Executive summary card
+        const summaryText = document.getElementById('ai-summary-text');
+        if (summaryText) {
+          summaryText.innerHTML = window.currentReport.synthesis;
+        }
+
+        const strengthsList = document.getElementById('ai-strengths-list');
+        if (strengthsList && window.currentReport.strengths) {
+          strengthsList.innerHTML = window.currentReport.strengths.map(s => `<li>${s}</li>`).join('');
+        }
+
+        const weaknessesList = document.getElementById('ai-weaknesses-list');
+        if (weaknessesList && window.currentReport.weaknesses) {
+          weaknessesList.innerHTML = window.currentReport.weaknesses.map(w => `<li>${w}</li>`).join('');
+        }
+
+        const priorityFix = document.getElementById('top-priority-fix-text');
+        if (priorityFix) {
+          priorityFix.textContent = window.currentReport.topPriorityFix;
+        }
+
+        // Update business impact values
+        const impactUX = document.getElementById('impact-ux');
+        const impactSEO = document.getElementById('impact-seo');
+        const impactConv = document.getElementById('impact-conv');
+        const barUX = document.getElementById('impact-bar-ux');
+        const barSEO = document.getElementById('impact-bar-seo');
+        const barConv = document.getElementById('impact-bar-conv');
+
+        // Dynamically compute based on suggestions size
+        const count = window.currentReport.suggestions.length;
+        const uxBoost = Math.min(45, Math.max(12, count * 3));
+        const seoBoost = Math.min(35, Math.max(8, Math.floor(count * 2.2)));
+        const convBoost = (uxBoost * 0.6).toFixed(1);
+
+        if (impactUX) impactUX.textContent = `+${uxBoost}%`;
+        if (impactSEO) impactSEO.textContent = `+${seoBoost}%`;
+        if (impactConv) impactConv.textContent = `+${convBoost}%`;
+        if (barUX) barUX.style.width = `${uxBoost}%`;
+        if (barSEO) barSEO.style.width = `${seoBoost}%`;
+        if (barConv) barConv.style.width = `${convBoost}%`;
+
+        // Update Core Web Vitals
+        const v = window.currentReport.vitals;
+        if (v) {
+          const lcpEl = document.getElementById('metric-lcp');
+          const clsEl = document.getElementById('metric-cls');
+          const inpEl = document.getElementById('metric-inp');
+          const fcpEl = document.getElementById('metric-fcp');
+          const ttfbEl = document.getElementById('metric-ttfb');
+          const speedEl = document.getElementById('metric-speed');
+
+          if (lcpEl) lcpEl.textContent = v.lcp;
+          if (clsEl) clsEl.textContent = v.cls;
+          if (inpEl) inpEl.textContent = v.inp;
+          if (fcpEl) fcpEl.textContent = v.fcp;
+          if (ttfbEl) ttfbEl.textContent = v.ttfb;
+          if (speedEl) speedEl.textContent = v.speed;
+        }
+
+        // Update Tech Badges Strip
+        const techContainer = document.getElementById('tech-badges-container');
+        if (techContainer && window.currentReport.techStack) {
+          const colorClasses = [
+            "bg-brand-500/10 border-brand-500/20 text-brand-300",
+            "bg-blue-500/10 border-blue-500/20 text-blue-300",
+            "bg-purple-500/10 border-purple-500/20 text-purple-300",
+            "bg-fuchsia-500/10 border-fuchsia-500/20 text-fuchsia-300",
+            "bg-yellow-500/10 border-yellow-500/20 text-yellow-300",
+            "bg-teal-500/10 border-teal-500/20 text-teal-300",
+            "bg-rose-500/10 border-rose-500/20 text-rose-300",
+            "bg-cyan-500/10 border-cyan-500/20 text-cyan-300"
+          ];
+          techContainer.innerHTML = window.currentReport.techStack.map((tech, idx) => {
+            const cls = colorClasses[idx % colorClasses.length];
+            return `<span class="px-2.5 py-1 rounded border font-bold text-[9px] uppercase font-mono tracking-wider ${cls}">${tech}</span>`;
+          }).join('');
+        }
+
+        // Populate 19 dimensions grid
+        const dimsGrid = document.getElementById('dashboard-dimensions-grid');
+        if (dimsGrid && window.currentReport.dimensions) {
+          dimsGrid.innerHTML = "";
+          const d = window.currentReport.dimensions;
+          const dimConfigs = [
+            { key: "ui", name: "UI Design Quality", icon: "fa-palette", color: "from-purple-500 to-indigo-500" },
+            { key: "ux", name: "Visual Hierarchy / UX", icon: "fa-layer-group", color: "from-blue-500 to-indigo-600" },
+            { key: "access", name: "Accessibility", icon: "fa-universal-access", color: "from-emerald-500 to-teal-600" },
+            { key: "seo", name: "Search (SEO)", icon: "fa-magnifying-glass-chart", color: "from-amber-500 to-orange-600" },
+            { key: "speed", name: "Performance", icon: "fa-gauge-high", color: "from-rose-500 to-pink-600" },
+            { key: "type", name: "Typography Scale", icon: "fa-font", color: "from-fuchsia-500 to-purple-600" },
+            { key: "space", name: "Visual Spacing", icon: "fa-expand", color: "from-violet-500 to-purple-700" },
+            { key: "hierarchy", name: "Gaze Flow Layout", icon: "fa-eye", color: "from-cyan-500 to-blue-600" },
+            { key: "nav", name: "Navigation Setup", icon: "fa-compass", color: "from-indigo-500 to-blue-700" },
+            { key: "forms", name: "Form Design", icon: "fa-square-poll-horizontal", color: "from-teal-500 to-emerald-700" },
+            { key: "buttons", name: "Button Ratios", icon: "fa-toggle-on", color: "from-sky-500 to-blue-500" },
+            { key: "cards", name: "Bento Cards Grid", icon: "fa-table-cells-large", color: "from-pink-500 to-rose-500" },
+            { key: "palette", name: "Color Palette", icon: "fa-droplet", color: "from-violet-500 to-fuchsia-600" },
+            { key: "brand", name: "Brand Consistency", icon: "fa-award", color: "from-amber-500 to-yellow-600" },
+            { key: "mobile", name: "Mobile Fluidity", icon: "fa-mobile-screen", color: "from-emerald-500 to-green-600" },
+            { key: "anim", name: "Animation Quality", icon: "fa-wand-magic-sparkles", color: "from-indigo-500 to-purple-600" },
+            { key: "code", name: "Code Cleanliness", icon: "fa-code", color: "from-slate-500 to-slate-700" },
+            { key: "best", name: "Best Practices", icon: "fa-shield-halved", color: "from-cyan-500 to-teal-500" },
+            { key: "security", name: "Security Check", icon: "fa-lock", color: "from-green-500 to-emerald-600" }
+          ];
+
+          dimConfigs.forEach(cfg => {
+            const val = d[cfg.key] || 85;
+            let statusColor = "text-emerald-400";
+            if (val < 80) statusColor = "text-amber-400";
+            if (val < 65) statusColor = "text-rose-400";
+
+            dimsGrid.innerHTML += `
+              <div class="glass-card p-4 border border-white/5 bg-slate-950/20 flex flex-col justify-between space-y-3 hover:border-white/10 hover:scale-[1.02] transition-all duration-300 group">
+                <div class="flex items-center justify-between">
+                  <div class="w-7 h-7 rounded-lg bg-white/5 flex items-center justify-center text-gray-400 group-hover:text-white transition-colors">
+                    <i class="fa-solid ${cfg.icon} text-xs"></i>
+                  </div>
+                  <span class="text-sm font-bold font-mono ${statusColor}">${val}</span>
+                </div>
+                <div>
+                  <h4 class="text-[10px] font-bold text-gray-400 group-hover:text-white transition-colors leading-none">${cfg.name}</h4>
+                  <div class="w-full bg-white/5 h-1 rounded-full mt-2 overflow-hidden">
+                    <div class="h-full bg-gradient-to-r ${cfg.color} rounded-full transition-all duration-1000" style="width: ${val}%"></div>
+                  </div>
+                </div>
+              </div>
+            `;
+          });
+        }
+
+        // Update Overall Quality card texts
+        const scoreBadge = document.getElementById('ov-score-badge');
+        const scoreDesc = document.getElementById('ov-score-desc');
+        if (scoreBadge) {
+          if (currentScoreVal >= 90) {
+            scoreBadge.className = "px-3 py-1.5 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xs uppercase tracking-wide border border-emerald-500/10 inline-block";
+            scoreBadge.textContent = "Excellent Design IQ";
+          } else if (currentScoreVal >= 75) {
+            scoreBadge.className = "px-3 py-1.5 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xs uppercase tracking-wide border border-amber-500/10 inline-block";
+            scoreBadge.textContent = "Moderate Design IQ";
+          } else {
+            scoreBadge.className = "px-3 py-1.5 rounded-full bg-rose-500/20 text-rose-400 font-bold text-xs uppercase tracking-wide border border-rose-500/10 inline-block";
+            scoreBadge.textContent = "Poor Design IQ";
+          }
+        }
+        if (scoreDesc) {
+          scoreDesc.textContent = `DesignIQ AI audited ${window.currentReport.suggestions.length} issues on the target site.`;
         }
       } else {
         currentScoreVal = 89;
@@ -3061,6 +3991,68 @@
 
       // Force redrawing charts upon switching tabs to capture layout adjustments
       setTimeout(resizeAllCharts, 50);
+    }
+
+    // ----------------------------------------------------
+    // ROI CALCULATOR
+    // ----------------------------------------------------
+    function calcROI() {
+      const visitors = parseFloat(document.getElementById('roi-visitors')?.value) || 50000;
+      const aov = parseFloat(document.getElementById('roi-aov')?.value) || 120;
+      const convRate = parseFloat(document.getElementById('roi-conv')?.value) || 2.4;
+      const currentRevenue = visitors * (convRate / 100) * aov;
+      const projectedConvRate = convRate * 1.148;
+      const projectedRevenue = visitors * (projectedConvRate / 100) * aov;
+      const uplift = projectedRevenue - currentRevenue;
+      const annual = uplift * 12;
+      const fmt = (n) => '$' + Math.round(n).toLocaleString('en-US');
+      const cur = document.getElementById('roi-current');
+      const proj = document.getElementById('roi-projected');
+      const up = document.getElementById('roi-uplift');
+      const yr = document.getElementById('roi-annual');
+      if (cur) cur.textContent = fmt(currentRevenue);
+      if (proj) proj.textContent = fmt(projectedRevenue);
+      if (up) up.textContent = '+' + fmt(uplift);
+      if (yr) yr.textContent = '+' + fmt(annual);
+    }
+
+    // ----------------------------------------------------
+    // STYLE PRESET SWITCHER (AI Redesign Slider)
+    // ----------------------------------------------------
+    const stylePresets = {
+      glassmorphism: { bg:'linear-gradient(135deg,#0a0a1a,#0d1117)', panelBg:'rgba(255,255,255,0.04)', panelBorder:'1px solid rgba(255,255,255,0.08)', text:'#f1f5f9', subtext:'#94a3b8', heading:'Premium Glassmorphic SaaS Interface', desc:'Translucent cards, subtle gradients, and careful typography hierarchy deliver a polished luxury SaaS feel.', btn1:'background:linear-gradient(135deg,#7c3aed,#3b82f6);color:#fff;border-radius:12px;font-weight:700;', btn2:'background:rgba(255,255,255,0.05);color:#94a3b8;border-radius:12px;border:1px solid rgba(255,255,255,0.1);' },
+      neobrutalism: { bg:'#f5f0e8', panelBg:'#fff', panelBorder:'3px solid #000', text:'#000', subtext:'#444', heading:'Brutal. Bold. Unmissable.', desc:'High-contrast blacks, chunky borders, and punchy colors demand attention without compromise.', btn1:'background:#ff6b00;color:#000;border-radius:4px;font-weight:900;border:3px solid #000;box-shadow:4px 4px 0 #000;', btn2:'background:#fff;color:#000;border-radius:4px;border:3px solid #000;font-weight:700;box-shadow:3px 3px 0 #000;' },
+      minimal: { bg:'#ffffff', panelBg:'#f8f9fa', panelBorder:'1px solid #e5e7eb', text:'#111827', subtext:'#6b7280', heading:'Clean. Quiet. Considered.', desc:'Ultra-minimal white space and restrained color use create a calm, trustworthy brand presence.', btn1:'background:#111827;color:#fff;border-radius:8px;font-weight:600;', btn2:'background:transparent;color:#374151;border-radius:8px;border:1.5px solid #d1d5db;' },
+      corporate: { bg:'#1e293b', panelBg:'#0f172a', panelBorder:'1px solid #334155', text:'#e2e8f0', subtext:'#94a3b8', heading:'Enterprise-Grade Dashboard Interface', desc:'Structured data grids, professional blue palette, built for B2B SaaS and internal tools.', btn1:'background:#0ea5e9;color:#fff;border-radius:6px;font-weight:600;', btn2:'background:transparent;color:#94a3b8;border-radius:6px;border:1px solid #334155;' },
+      neon: { bg:'linear-gradient(135deg,#000005,#050010)', panelBg:'rgba(0,255,170,0.03)', panelBorder:'1px solid rgba(0,255,170,0.15)', text:'#e0fff8', subtext:'rgba(0,255,170,0.6)', heading:'Cyber Interface — NeXT-GEN', desc:'Electric neon glows, terminal typography, and grid-lined panels invoke a futuristic aesthetic.', btn1:'background:linear-gradient(90deg,#00ffaa,#00aaff);color:#000;border-radius:6px;font-weight:900;letter-spacing:0.05em;', btn2:'background:transparent;color:#00ffaa;border-radius:6px;border:1px solid rgba(0,255,170,0.25);' },
+    };
+
+    function applyStylePreset(preset) {
+      const p = stylePresets[preset];
+      if (!p) return;
+      document.querySelectorAll('.style-preset-btn').forEach(btn => {
+        btn.classList.remove('bg-brand-500/10','text-brand-300','border-brand-500/30');
+        btn.classList.add('text-gray-400','border-white/10');
+      });
+      const activeBtn = document.getElementById('preset-' + preset);
+      if (activeBtn) {
+        activeBtn.classList.remove('text-gray-400','border-white/10');
+        activeBtn.classList.add('bg-brand-500/10','text-brand-300','border-brand-500/30');
+      }
+      const afterFrame = document.getElementById('after-frame');
+      if (!afterFrame) return;
+      afterFrame.style.background = p.bg;
+      afterFrame.style.color = p.text;
+      const afterPanel = afterFrame.querySelector('.after-inner-panel');
+      if (afterPanel) { afterPanel.style.cssText = 'background:' + p.panelBg + ';border:' + p.panelBorder + ';border-radius:16px;padding:24px;'; }
+      const heading = document.getElementById('after-frame-heading');
+      if (heading) { heading.textContent = p.heading; heading.style.color = p.text; }
+      const desc = document.getElementById('after-frame-desc');
+      if (desc) { desc.textContent = p.desc; desc.style.color = p.subtext; }
+      const btn1 = document.getElementById('after-cta-primary');
+      if (btn1) btn1.style.cssText = p.btn1 + 'padding:10px 20px;font-size:12px;cursor:pointer;';
+      const btn2 = document.getElementById('after-cta-secondary');
+      if (btn2) btn2.style.cssText = p.btn2 + 'padding:10px 20px;font-size:12px;cursor:pointer;';
     }
 
     // ----------------------------------------------------
@@ -3451,58 +4443,85 @@
 
       filtered.forEach((s, idx) => {
         const isFixed = appliedFixes.has(s.id);
-        const badgeColor = s.severity === "High" ? "bg-red-500/20 text-red-400 border-red-500/30" : s.severity === "Medium" ? "bg-yellow-500/20 text-yellow-400 border-yellow-500/30" : "bg-emerald-500/20 text-emerald-400 border-emerald-500/30";
+        const badgeColor = s.severity === "Critical" ? "bg-rose-500/20 text-rose-400 border-rose-500/40"
+          : s.severity === "High" ? "bg-red-500/20 text-red-400 border-red-500/30"
+          : s.severity === "Medium" ? "bg-yellow-500/20 text-yellow-400 border-yellow-500/30"
+          : "bg-emerald-500/20 text-emerald-400 border-emerald-500/30";
+        
+        const difficultyColor = s.difficulty === "Hard" ? "text-rose-400" : s.difficulty === "Medium" ? "text-amber-400" : "text-emerald-400";
         
         container.innerHTML += `
           <div class="glass-card spring-card rounded-2xl overflow-hidden border border-white/5 ${isFixed ? 'border-emerald-500/30 bg-emerald-950/5' : ''} opacity-0 translate-y-3 transition-all duration-300 ease-out" id="suggestion-card-${s.id}">
-            <div class="p-6 cursor-pointer flex items-center justify-between" onclick="toggleSuggestionDetails(${s.id})">
+            <div class="p-5 cursor-pointer flex items-center justify-between gap-4" onclick="toggleSuggestionDetails(${s.id})">
               <div class="flex items-center space-x-4 min-w-0">
-                <div class="w-10 h-10 shrink-0 rounded-xl flex items-center justify-center ${isFixed ? 'bg-emerald-500/20 text-emerald-400' : 'bg-white/5 text-gray-400'}">
-                  <i class="fa-solid ${isFixed ? 'fa-check' : 'fa-circle-exclamation'}"></i>
+                <div class="w-9 h-9 shrink-0 rounded-xl flex items-center justify-center ${isFixed ? 'bg-emerald-500/20 text-emerald-400' : 'bg-white/5 text-gray-400'}">
+                  <i class="fa-solid ${isFixed ? 'fa-check' : 'fa-circle-exclamation'} text-sm"></i>
                 </div>
-                <div class="min-w-0">
+                <div class="min-w-0 space-y-1.5">
                   <h4 class="font-display font-semibold text-sm text-white truncate">${s.title}</h4>
-                  <div class="flex items-center gap-2 mt-1.5 flex-wrap">
-                    <span class="px-2 py-0.5 rounded text-[10px] font-bold border ${badgeColor}">${s.severity}</span>
-                    <span class="px-2 py-0.5 rounded text-[10px] font-mono text-gray-500 bg-white/5">${s.category}</span>
-                    ${isFixed ? '<span class="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">Auto-Fixed</span>' : ''}
+                  <div class="flex items-center gap-2 flex-wrap">
+                    <span class="px-2 py-0.5 rounded-md text-[9px] font-bold border font-mono uppercase tracking-wider ${badgeColor}">${s.severity}</span>
+                    <span class="px-2 py-0.5 rounded-md text-[9px] font-mono text-gray-500 bg-white/5 border border-white/5">${s.category}</span>
+                    <span class="px-2 py-0.5 rounded-md text-[9px] font-mono ${difficultyColor} bg-white/5 border border-white/5"><i class="fa-solid fa-gauge-simple-high mr-1"></i>${s.difficulty || 'Easy'}</span>
+                    <span class="px-2 py-0.5 rounded-md text-[9px] font-mono text-gray-400 bg-white/5 border border-white/5"><i class="fa-regular fa-clock mr-1"></i>${s.timeToFix || '5 mins'}</span>
+                    ${isFixed ? '<span class="px-2 py-0.5 rounded-md text-[9px] font-bold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 font-mono">✓ Fixed</span>' : ''}
                   </div>
                 </div>
               </div>
               <div class="flex items-center space-x-3 shrink-0">
-                <span class="text-[11px] font-mono font-bold text-brand-300">+${s.scoreEffect} Score</span>
-                <i class="fa-solid fa-chevron-down text-gray-500 spring-arrow" id="suggestion-arrow-${s.id}"></i>
+                <span class="text-xs font-mono font-bold text-brand-300 bg-brand-500/10 px-2 py-1 rounded-lg border border-brand-500/20">+${s.scoreEffect} pts</span>
+                <i class="fa-solid fa-chevron-down text-gray-500 spring-arrow text-xs" id="suggestion-arrow-${s.id}"></i>
               </div>
             </div>
 
             <div class="max-h-0 overflow-hidden spring-transition border-t border-transparent" id="suggestion-details-${s.id}">
-              <div class="p-6 bg-black/20 space-y-4 text-xs details-inner">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div class="space-y-2">
-                    <div class="font-bold text-gray-400">Why it matters</div>
-                    <p class="text-gray-500 leading-relaxed">${s.why}</p>
+              <div class="p-6 bg-black/20 space-y-5 text-xs details-inner">
+                
+                <!-- Metadata pills row -->
+                <div class="flex flex-wrap gap-3">
+                  <div class="flex items-center space-x-1.5 px-3 py-1.5 rounded-xl bg-white/5 border border-white/5">
+                    <i class="fa-solid fa-bolt text-amber-400 text-[10px]"></i>
+                    <span class="text-gray-400">Difficulty:</span>
+                    <span class="font-bold ${difficultyColor}">${s.difficulty || 'Easy'}</span>
                   </div>
-                  <div class="space-y-2">
-                    <div class="font-bold text-gray-400">How to fix</div>
-                    <p class="text-gray-500 leading-relaxed">${s.fix}</p>
+                  <div class="flex items-center space-x-1.5 px-3 py-1.5 rounded-xl bg-white/5 border border-white/5">
+                    <i class="fa-regular fa-clock text-blue-400 text-[10px]"></i>
+                    <span class="text-gray-400">Time to fix:</span>
+                    <span class="font-bold text-white">${s.timeToFix || '5 mins'}</span>
+                  </div>
+                  <div class="flex items-center space-x-1.5 px-3 py-1.5 rounded-xl bg-white/5 border border-white/5">
+                    <i class="fa-solid fa-arrow-trend-up text-emerald-400 text-[10px]"></i>
+                    <span class="text-gray-400">Est. Improvement:</span>
+                    <span class="font-bold text-emerald-400">+${s.scoreEffect} pts</span>
                   </div>
                 </div>
 
-                <div class="space-y-2 pt-2 border-t border-white/5">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div class="space-y-2 bg-white/3 rounded-xl p-4 border border-white/5">
+                    <div class="font-bold text-gray-300 flex items-center space-x-1.5"><i class="fa-solid fa-circle-info text-brand-400 text-[10px]"></i><span>Why it matters</span></div>
+                    <p class="text-gray-400 leading-relaxed">${s.why}</p>
+                  </div>
+                  <div class="space-y-2 bg-white/3 rounded-xl p-4 border border-white/5">
+                    <div class="font-bold text-gray-300 flex items-center space-x-1.5"><i class="fa-solid fa-wand-magic-sparkles text-brand-400 text-[10px]"></i><span>Recommended Fix</span></div>
+                    <p class="text-gray-400 leading-relaxed">${s.fix}</p>
+                  </div>
+                </div>
+
+                <div class="space-y-2 pt-1 border-t border-white/5">
                   <div class="flex items-center justify-between">
-                    <span class="font-bold text-gray-400">CSS Code Patch</span>
-                    <button onclick="copyCssSnippet('${btoa(s.code)}')" class="px-2.5 py-1 bg-white/5 hover:bg-white/10 text-white rounded font-mono text-[10px] flex items-center space-x-1.5">
+                    <span class="font-bold text-gray-300 flex items-center space-x-1.5"><i class="fa-solid fa-code text-brand-400 text-[10px]"></i><span>CSS Code Patch</span></span>
+                    <button onclick="copyCssSnippet('${btoa(s.code)}')" class="px-2.5 py-1 bg-white/5 hover:bg-white/10 text-white rounded-lg font-mono text-[10px] flex items-center space-x-1.5 transition-colors border border-white/5">
                       <i class="fa-solid fa-copy"></i>
-                      <span>Copy Patch</span>
+                      <span>Copy</span>
                     </button>
                   </div>
-                  <pre class="bg-slate-950 p-3 rounded-lg border border-white/5 text-brand-300 font-mono text-[10px] overflow-x-auto">${s.code}</pre>
+                  <pre class="bg-slate-950 p-3 rounded-xl border border-white/5 text-brand-300 font-mono text-[10px] overflow-x-auto leading-relaxed">${s.code}</pre>
                 </div>
 
-                <div class="flex items-center justify-between pt-4 border-t border-white/5">
-                  <span class="text-gray-500">Predicted Increase: <strong class="text-emerald-400">${s.expected}</strong></span>
-                  <button onclick="applyAutoFix(${s.id}, ${s.scoreEffect})" class="px-4 py-2 rounded-xl bg-gradient-to-r from-brand-600 to-blue-600 hover:from-brand-500 hover:to-blue-500 text-white font-semibold transition-all duration-300 shadow-md shadow-brand-500/10">
-                    ${isFixed ? "Revert Visual Fix" : "Apply Visual Fix"}
+                <div class="flex items-center justify-between pt-2 border-t border-white/5">
+                  <div class="text-gray-500 text-[11px]">Predicted Score Increase: <strong class="text-emerald-400 font-mono">+${s.scoreEffect} ${s.category}</strong></div>
+                  <button onclick="applyAutoFix(${s.id}, ${s.scoreEffect})" class="px-4 py-2 rounded-xl bg-gradient-to-r from-brand-600 to-blue-600 hover:from-brand-500 hover:to-blue-500 text-white font-semibold text-xs transition-all duration-300 shadow-md shadow-brand-500/10 cursor-pointer">
+                    ${isFixed ? '<i class="fa-solid fa-rotate-left mr-1.5"></i>Revert Fix' : '<i class="fa-solid fa-wand-magic-sparkles mr-1.5"></i>Apply Visual Fix'}
                   </button>
                 </div>
               </div>
@@ -5378,7 +6397,27 @@ This audit was compiled using the DesignIQ predictive gaze and contrast engine.
         return `Hey! 👋 I'm <strong>DesignIQ Coach</strong> — your on-demand design expert. I can help with:<br><br>• <strong>WCAG contrast</strong> compliance<br>• <strong>Typography</strong> and spacing ratios<br>• <strong>Gaze patterns</strong> (F-shape, Z-shape)<br>• <strong>Mobile responsiveness</strong> best practices<br>• <strong>Color palettes</strong> and brand alignment<br>• <strong>SEO</strong> and Core Web Vitals<br><br>What design challenge can I help you solve today?`;
       }
       // Default fallback
-      return `Thanks for your question about "<em>${msg.slice(0, 60)}${msg.length > 60 ? '...' : ''}</em>".<br><br>Based on your audit of <strong>${domain}</strong> (current score: <strong>${score}/100</strong>), here's what I suggest:<br><br>Review the <strong>Suggestions</strong> tab in the workspace for ${window.currentReport ? window.currentReport.suggestions.length : 0} tailored CSS patch recommendations. Each fix is interactive — click "Apply Visual Fix" to see live changes in the browser mockup instantly.<br><br>Feel free to ask about <em>contrast</em>, <em>typography</em>, <em>mobile layouts</em>, <em>color palettes</em>, or <em>gaze patterns</em> for more specific guidance!`;
+    }
+
+    // --------------------------------------------------------
+    // SCROLL REVEAL TRIGGERS
+    // --------------------------------------------------------
+    function initScrollReveal() {
+      const reveals = document.querySelectorAll('.scroll-reveal');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('revealed');
+          }
+        });
+      }, { threshold: 0.05 });
+      reveals.forEach(r => observer.observe(r));
+    }
+    
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", initScrollReveal);
+    } else {
+      initScrollReveal();
     }
   </script>
 
