@@ -1,0 +1,6 @@
+{
+  "name": "DesignIQ AI",
+  "description": "An interactive, beautiful AI-powered website design and UX analyzer that generates instant professional audits, visual suggestions, and side-by-side design previews.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
