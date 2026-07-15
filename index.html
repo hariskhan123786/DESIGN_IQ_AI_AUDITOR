@@ -2009,6 +2009,7 @@
 
               <select id="filter-severity" onchange="filterSuggestions()" class="bg-slate-950/60 border border-white/10 rounded-xl text-xs text-gray-300 py-2.5 px-3 outline-none">
                 <option value="All">All Severities</option>
+                <option value="Critical">Critical</option>
                 <option value="High">High</option>
                 <option value="Medium">Medium</option>
                 <option value="Low">Low</option>
@@ -3985,13 +3986,30 @@
         el.classList.add('text-gray-400');
       });
       
-      document.getElementById(`tab-${tabId}`).classList.remove('hidden');
-      document.getElementById(`btn-tab-${tabId}`).classList.add('bg-brand-500/10', 'text-brand-300');
-      document.getElementById(`btn-tab-${tabId}`).classList.remove('text-gray-400');
+      const tabEl = document.getElementById(`tab-${tabId}`);
+      const btnEl = document.getElementById(`btn-tab-${tabId}`);
+      if (tabEl) tabEl.classList.remove('hidden');
+      if (btnEl) { btnEl.classList.add('bg-brand-500/10', 'text-brand-300'); btnEl.classList.remove('text-gray-400'); }
+
+      // Tab-specific init on switch
+      if (tabId === 'metrics') {
+        setTimeout(() => {
+          drawRadarChart();
+          drawBarChart();
+          renderSliders();
+        }, 80);
+      } else if (tabId === 'suggestions') {
+        renderSuggestions();
+      } else if (tabId === 'roadmap') {
+        calcROI();
+      } else if (tabId === 'overview') {
+        setTimeout(() => { if (typeof _animateWorkspaceScores === 'function') _animateWorkspaceScores(); }, 100);
+      }
 
       // Force redrawing charts upon switching tabs to capture layout adjustments
       setTimeout(resizeAllCharts, 50);
     }
+
 
     // ----------------------------------------------------
     // ROI CALCULATOR
@@ -4571,12 +4589,35 @@
     }
 
     function applyAutoFix(id, points) {
-      if (appliedFixes.has(id)) {
+      const isFixed = appliedFixes.has(id);
+      
+      if (isFixed) {
         appliedFixes.delete(id);
         currentScoreVal -= points;
+        
+        // Code audit iframe revert
+        if (window._liveIframeDoc) {
+          const style = window._liveIframeDoc.querySelector(`style[data-designiq-fix="${id}"]`);
+          if (style) {
+            style.remove();
+            showToast("↩️ Visual CSS patch reverted!");
+          }
+        }
       } else {
         appliedFixes.add(id);
         currentScoreVal += points;
+        
+        // Code audit iframe apply
+        if (window._liveIframeDoc && suggestionsData[id] && suggestionsData[id].code) {
+          const code = suggestionsData[id].code;
+          if (code.trim().startsWith('<') === false) {
+            const style = window._liveIframeDoc.createElement('style');
+            style.setAttribute('data-designiq-fix', id);
+            style.textContent = code;
+            window._liveIframeDoc.head.appendChild(style);
+            showToast("✨ CSS Fix applied live to your code!");
+          }
+        }
       }
 
       // Max scale lock
@@ -4587,25 +4628,24 @@
       animateWorkspaceScores();
       renderSuggestions();
 
-      // Dynamically apply visual fixes on browser mockup!
+      // Standard mockup visual updates
       const mockPrimaryBtn = document.getElementById('mockup-btn-primary');
       const mockHeading = document.getElementById('mockup-heading');
       const mockCard3 = document.getElementById('mockup-card-3');
       const mockPage = document.getElementById('mock-page-content');
-
+      
+      const active = appliedFixes.has(id);
       if (id === 0) {
-        // High contrast fix
-        mockPrimaryBtn.style.boxShadow = appliedFixes.has(0) ? "0 0 20px rgba(139, 92, 246, 0.8)" : "none";
-        mockPrimaryBtn.style.transform = appliedFixes.has(0) ? "scale(1.05)" : "scale(1)";
+        if (mockPrimaryBtn) {
+          mockPrimaryBtn.style.boxShadow = active ? "0 0 20px rgba(139, 92, 246, 0.8)" : "none";
+          mockPrimaryBtn.style.transform = active ? "scale(1.05)" : "scale(1)";
+        }
       } else if (id === 1) {
-        // Unify borders
-        mockPage.style.borderRadius = appliedFixes.has(1) ? "24px" : "0px";
+        if (mockPage) mockPage.style.borderRadius = active ? "24px" : "0px";
       } else if (id === 3) {
-        // Typography scaling
-        mockHeading.style.lineHeight = appliedFixes.has(3) ? "1.4" : "1";
+        if (mockHeading) mockHeading.style.lineHeight = active ? "1.4" : "1";
       } else if (id === 10) {
-        // Mobile overflow
-        mockPage.style.overflow = appliedFixes.has(10) ? "hidden" : "visible";
+        if (mockPage) mockPage.style.overflow = active ? "hidden" : "visible";
       }
     }
 
@@ -4698,20 +4738,58 @@
     }, { passive: false });
 
     // ----------------------------------------------------
-    // REPORT EXPORTS (PDF, JSON, MARKDOWN)
     // ----------------------------------------------------
+    // LOCAL ALIAS — animateWorkspaceScores plain call bridge
+    // ----------------------------------------------------
+    const _animateWorkspaceScores = window.animateWorkspaceScores;
+    function animateWorkspaceScores() {
+      if (typeof _animateWorkspaceScores === 'function') {
+        _animateWorkspaceScores();
+      }
+    }
+
+    // ----------------------------------------------------
+    // SHARE AUDIT RESULTS
+    // ----------------------------------------------------
+    function shareAuditResults() {
+      const url = document.getElementById('workspace-url')?.textContent || 'https://yourwebsite.com';
+      const score = currentScoreVal || 0;
+      const issueCount = (suggestionsData || []).length;
+      const text = `DesignIQ AI Design Audit\n\nURL: ${url}\nOverall Score: ${score}/100\nIssues Found: ${issueCount}\n\nAudit powered by DesignIQ AI — run yours free at ${window.location.origin}`;
+
+      if (navigator.share) {
+        navigator.share({ title: 'DesignIQ AI Audit Results', text, url: window.location.href })
+          .catch(() => fallbackShare(text));
+      } else {
+        fallbackShare(text);
+      }
+
+      function fallbackShare(t) {
+        navigator.clipboard.writeText(t).then(() => {
+          showToast('Audit results copied to clipboard!');
+        }).catch(() => {
+          alert(`Score: ${score}/100\nURL: ${url}\n\nCopy the page URL to share.`);
+        });
+      }
+    }
+
+    // REPORT EXPORTS (PDF, JSON, MARKDOWN)
+
     function downloadJsonReport() {
       const url = document.getElementById('workspace-url').textContent;
       const report = {
         url: url,
         date: new Date().toISOString(),
         score: currentScoreVal,
-        metrics: {
-          ui: (window.currentReport && window.currentReport.dimensions) ? window.currentReport.dimensions.ui : 92,
-          ux: (window.currentReport && window.currentReport.dimensions) ? window.currentReport.dimensions.ux : 90,
-          seo: (window.currentReport && window.currentReport.dimensions) ? window.currentReport.dimensions.seo : 84,
-          speed: (window.currentReport && window.currentReport.dimensions) ? window.currentReport.dimensions.speed : 78,
-          accessibility: 91
+        metrics: (window.currentReport && window.currentReport.dimensions) ? window.currentReport.dimensions : {
+          ui: 92,
+          ux: 90,
+          seo: 84,
+          speed: 78,
+          access: 91,
+          type: 95,
+          space: 90,
+          brand: 86
         },
         suggestions: suggestionsData || [],
         fixesApplied: Array.from(appliedFixes)
@@ -4724,6 +4802,7 @@
       document.body.appendChild(downloadAnchor);
       downloadAnchor.click();
       downloadAnchor.remove();
+      showToast("DesignIQ Audit JSON report downloaded successfully!");
     }
 
     function downloadPdfReport() {
@@ -4873,14 +4952,25 @@
 
       // Add delay to ensure browser paints elements before canvas generation
       setTimeout(() => {
-        html2pdf().set(opt).from(tempDiv).save().then(() => {
+        try {
+          if (typeof html2pdf === 'undefined') {
+            throw new ReferenceError("html2pdf library is not loaded");
+          }
+          html2pdf().set(opt).from(tempDiv).save().then(() => {
+            document.body.removeChild(outerContainer);
+            showToast("Executive PDF Report downloaded successfully!");
+          }).catch(err => {
+            console.error("PDF generation failed:", err);
+            document.body.removeChild(outerContainer);
+            showToast("PDF generation failed. Opening print layout instead.");
+            window.print();
+          });
+        } catch (err) {
+          console.warn("PDF engine fallback triggered:", err);
           document.body.removeChild(outerContainer);
-          showToast("Executive PDF Report downloaded successfully!");
-        }).catch(err => {
-          console.error("PDF generation failed:", err);
-          document.body.removeChild(outerContainer);
-          showToast("PDF generation failed. Fallback to print layout used.");
-        });
+          showToast("PDF engine unavailable. Opening print layout instead.");
+          window.print();
+        }
       }, 150);
     }
 
@@ -5147,24 +5237,47 @@
 
     function copyMarkdownReport() {
       const url = document.getElementById('workspace-url').textContent;
-      const md = `
-# DesignIQ AI Audit Report
-**Target URL:** ${url}
-**Overall Score:** ${currentScoreVal}/100
+      const report = window.currentReport;
+      const ui = report ? report.dimensions.ui : 92;
+      const ux = report ? report.dimensions.ux : 90;
+      const seo = report ? report.dimensions.seo : 84;
+      const speed = report ? report.dimensions.speed : 78;
+      const access = report ? report.dimensions.access : 91;
+      
+      let md = `# DesignIQ AI Audit Report\n\n`;
+      md += `**Target URL:** ${url}\n`;
+      md += `**Overall Score:** ${currentScoreVal}/100\n\n`;
+      md += `## Core Metric Dimension Scores\n`;
+      md += `* UI Design Quality: ${ui}%\n`;
+      md += `* Visual Hierarchy / UX: ${ux}%\n`;
+      md += `* Search Optimization (SEO): ${seo}%\n`;
+      md += `* Performance / Speed Vitals: ${speed}%\n`;
+      md += `* Accessibility (WCAG AA): ${access}%\n\n`;
+      md += `## Applied Fixes: ${appliedFixes.size} / ${(suggestionsData || []).length} recommendations resolved\n\n`;
+      md += `## Verified UI & Contrast Recommendations\n`;
 
-## Core Metric Dimension Scores
-* UI Design: 92%
-* UX Layout: 90%
-* SEO performance: 84%
-* Page Speed: 78%
-* Accessibility: 91%
+      if (suggestionsData && suggestionsData.length > 0) {
+        suggestionsData.forEach((s, idx) => {
+          const isApplied = appliedFixes.has(s.id);
+          md += `\n### ${idx + 1}. [${s.severity}] ${s.title} (+${s.scoreEffect} pts)\n`;
+          md += `* **Category:** ${s.category}\n`;
+          md += `* **Difficulty:** ${s.difficulty || 'Easy'}\n`;
+          md += `* **Time to fix:** ${s.timeToFix || '5 mins'}\n`;
+          md += `* **Status:** ${isApplied ? '✓ Applied / Fixed' : 'Pending'}\n`;
+          md += `* **Why it matters:** ${s.why}\n`;
+          md += `* **Recommended Fix:** ${s.fix}\n`;
+          if (s.code) {
+            md += `* **CSS Patch:**\n\`\`\`css\n${s.code}\n\`\`\`\n`;
+          }
+        });
+      } else {
+        md += `\n*No recommendations generated for this report.*\n`;
+      }
 
-## Applied Fixes Count: ${appliedFixes.size}/20
-This audit was compiled using the DesignIQ predictive gaze and contrast engine.
-      `;
+      md += `\n\n*Generated automatically with DesignIQ AI Framework.*`;
 
       navigator.clipboard.writeText(md.trim()).then(() => {
-        showToast("Markdown Report copied successfully to clipboard!");
+        showToast("Markdown Report copied successfully!");
       });
     }
 
@@ -6166,46 +6279,6 @@ This audit was compiled using the DesignIQ predictive gaze and contrast engine.
       }, 60);
     }
 
-    // Override applyAutoFix to inject CSS into user's iframe for code audits
-    const _origApplyAutoFix = window.applyAutoFix || null;
-    window.applyAutoFix = function(id, points) {
-      if (appliedFixes.has(id)) {
-        appliedFixes.delete(id);
-        currentScoreVal -= points;
-      } else {
-        appliedFixes.add(id);
-        currentScoreVal += points;
-        // If this is a code audit, inject the CSS patch into the live iframe
-        if (window._liveIframeDoc && suggestionsData[id] && suggestionsData[id].code) {
-          const code = suggestionsData[id].code;
-          if (code.trim().startsWith('<') === false) {
-            // It's a CSS snippet, inject it
-            const style = window._liveIframeDoc.createElement('style');
-            style.setAttribute('data-designiq-fix', id);
-            style.textContent = code;
-            window._liveIframeDoc.head.appendChild(style);
-            showToast(`✨ CSS Fix applied live to your code!`);
-          }
-        }
-      }
-      if (currentScoreVal > 100) currentScoreVal = 100;
-      if (currentScoreVal < 0) currentScoreVal = 0;
-      animateWorkspaceScores();
-      renderSuggestions();
-
-      // Standard mockup visual updates
-      const mockPrimaryBtn = document.getElementById('mockup-btn-primary');
-      const mockHeading = document.getElementById('mockup-heading');
-      const mockCard3 = document.getElementById('mockup-card-3');
-      const mockPage = document.getElementById('mock-page-content');
-      if (id === 0) {
-        if (mockPrimaryBtn) { mockPrimaryBtn.style.boxShadow = appliedFixes.has(0) ? '0 0 20px rgba(139, 92, 246, 0.8)' : 'none'; mockPrimaryBtn.style.transform = appliedFixes.has(0) ? 'scale(1.05)' : 'scale(1)'; }
-      } else if (id === 1) {
-        if (mockPage) mockPage.style.borderRadius = appliedFixes.has(1) ? '24px' : '0px';
-      } else if (id === 3) {
-        if (mockHeading) mockHeading.style.lineHeight = appliedFixes.has(3) ? '1.4' : '1';
-      }
-    };
 
     // --------------------------------------------------------
     // GAZE TRACE PATHWAYS
