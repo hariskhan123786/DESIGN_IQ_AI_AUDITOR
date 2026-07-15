@@ -3,9 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <script>
+    // Safe storage wrapper to prevent crashes in sandboxed webviews with blocked localStorage
+    window.safeStorage = {
+      getItem(key) {
+        try { return localStorage.getItem(key); } catch (e) { return this._memory[key] || null; }
+      },
+      setItem(key, value) {
+        try { localStorage.setItem(key, value); } catch (e) { this._memory[key] = String(value); }
+      },
+      _memory: {}
+    };
+
     // Initialize light/dark theme immediately to prevent flashing/FOUC
     (function() {
-      const savedThemeMode = localStorage.getItem('themeMode') || 'dark';
+      const savedThemeMode = window.safeStorage.getItem('themeMode') || 'dark';
       if (savedThemeMode === 'light') {
         document.documentElement.classList.remove('dark');
         document.documentElement.classList.add('light');
@@ -14,6 +25,15 @@
         document.documentElement.classList.remove('light');
       }
     })();
+  </script>
+  <script>
+    window.onerror = function(message, source, lineno, colno, error) {
+      const errDiv = document.createElement('div');
+      errDiv.className = "fixed top-4 left-4 right-4 bg-rose-600 text-white p-4 rounded-xl z-[99999] text-xs font-mono shadow-2xl border border-white/20";
+      errDiv.innerHTML = `<strong>Runtime Error:</strong> ${message}<br><span class="opacity-70">Source: ${source}:${lineno}:${colno}</span>`;
+      document.body.appendChild(errDiv);
+      return false;
+    };
   </script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DesignIQ AI - Design Intelligence, Quantified</title>
@@ -2727,7 +2747,7 @@
     window.setThemeStyle = function(theme) {
       // Set attribute on html element
       document.documentElement.setAttribute('data-theme', theme);
-      localStorage.setItem('themeStyle', theme);
+      window.safeStorage.setItem('themeStyle', theme);
 
       // Hide dropdown
       if (themeStyleDropdown) {
@@ -2758,7 +2778,7 @@
     };
 
     // Initialize theme style immediately to prevent FOUC
-    const initialThemeStyle = localStorage.getItem('themeStyle') || 'amethyst';
+    const initialThemeStyle = window.safeStorage.getItem('themeStyle') || 'amethyst';
     window.setThemeStyle(initialThemeStyle);
 
     // ----------------------------------------------------
@@ -2771,11 +2791,11 @@
         if (isCurrentlyDark) {
           document.documentElement.classList.remove('dark');
           document.documentElement.classList.add('light');
-          localStorage.setItem('themeMode', 'light');
+          window.safeStorage.setItem('themeMode', 'light');
         } else {
           document.documentElement.classList.remove('light');
           document.documentElement.classList.add('dark');
-          localStorage.setItem('themeMode', 'dark');
+          window.safeStorage.setItem('themeMode', 'dark');
         }
         // Redraw charts with new colors
         setTimeout(() => {
@@ -5394,7 +5414,7 @@
     // ----------------------------------------------------
     window.saveAuditToHistory = function(url, report) {
       try {
-        let history = JSON.parse(localStorage.getItem('designiq_audit_history') || '[]');
+        let history = JSON.parse(window.safeStorage.getItem('designiq_audit_history') || '[]');
         // Remove existing to keep it unique and move it to top
         history = history.filter(item => item.url.toLowerCase() !== url.toLowerCase());
         
@@ -5409,7 +5429,7 @@
           history = history.slice(0, 5);
         }
         
-        localStorage.setItem('designiq_audit_history', JSON.stringify(history));
+        window.safeStorage.setItem('designiq_audit_history', JSON.stringify(history));
         renderAuditHistory();
       } catch (e) {
         console.error("Error saving audit history:", e);
@@ -5421,7 +5441,7 @@
       if (!container) return;
       
       try {
-        const history = JSON.parse(localStorage.getItem('designiq_audit_history') || '[]');
+        const history = JSON.parse(window.safeStorage.getItem('designiq_audit_history') || '[]');
         if (history.length === 0) {
           container.innerHTML = `<div class="text-[11px] text-gray-500 italic px-2 py-2 text-center bg-white/2 rounded-xl border border-white/2">No previous audits found</div>`;
           return;
@@ -5451,7 +5471,7 @@
 
     window.loadAuditFromHistory = function(url) {
       try {
-        const history = JSON.parse(localStorage.getItem('designiq_audit_history') || '[]');
+        const history = JSON.parse(window.safeStorage.getItem('designiq_audit_history') || '[]');
         const item = history.find(h => h.url.toLowerCase() === url.toLowerCase());
         if (!item || !item.report) {
           showToast("Could not find report details for this website.");
