@@ -4755,6 +4755,25 @@
     }, { passive: false });
 
     // ----------------------------------------------------
+    // EXPOSE INTERACTIVE FUNCTIONS TO GLOBAL WINDOW SCOPE
+    // ----------------------------------------------------
+    window.switchTab = switchTab;
+    window.calcROI = calcROI;
+    window.applyStylePreset = applyStylePreset;
+    window.downloadHtmlReport = downloadHtmlReport;
+    window.downloadPdfReport = downloadPdfReport;
+    window.copyMarkdownReport = copyMarkdownReport;
+    window.downloadJsonReport = downloadJsonReport;
+    window.shareAuditResults = shareAuditResults;
+    window.demoAudit = demoAudit;
+    window.exitWorkspace = exitWorkspace;
+    window.filterSuggestions = filterSuggestions;
+    window.applyAutoFix = applyAutoFix;
+    window.highlightSuggestion = highlightSuggestion;
+    window.toggleSuggestionDetails = toggleSuggestionDetails;
+    window.copyCssSnippet = copyCssSnippet;
+
+    // ----------------------------------------------------
     // ----------------------------------------------------
     // LOCAL ALIAS — animateWorkspaceScores plain call bridge
     // ----------------------------------------------------
